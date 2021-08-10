@@ -1,0 +1,42 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: swag-local
+  mail:
+    host: localhost
+    port: 12345
+
+cors:
+  configurations:
+    - path: "/**"
+      configuration:
+        allowedOrigins:
+          - "*"
+        allowedMethods:
+          - "*"
+        allowedHeaders:
+          - "*"
+
+application:
+  project:
+    administration-url: "http://localhost:3000"
+  libraries:
+    security:
+      jwt:
+        secretKey: "change-me-i-must-be-super-long-change-me-i-must-be-super-long-change-me-i-must-be-super-long"
+
+logging.level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  build:
+    version: ${version}

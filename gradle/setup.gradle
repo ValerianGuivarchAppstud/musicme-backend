@@ -1,0 +1,20 @@
+task setupGitHooks(type: JavaExec, group: "setup") {
+    description = "Setup KTlint for git "
+    classpath = configurations.ktlint
+    main = "com.pinterest.ktlint.Main"
+    args  "--install-git-pre-commit-hook"
+}
+
+
+task setupIDE(type: JavaExec, group: "setup") {
+    description = "Setup KTlint for IntelliJ"
+    classpath = configurations.ktlint
+    main = "com.pinterest.ktlint.Main"
+    args "--apply-to-idea-project", "-y"
+}
+
+task setupProject(type: Task, group: "setup") {}
+
+
+setupProject.dependsOn setupGitHooks
+setupProject.dependsOn setupIDE

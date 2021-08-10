@@ -1,0 +1,49 @@
+configurations {
+    wiremockStandalone // FIXME test dependency
+}
+
+dependencies {
+    wiremockStandalone "com.github.tomakehurst:wiremock-standalone:2.27.1"
+}
+
+
+class WiremockPluginExtension {
+    String port = 0
+    boolean verbose = false
+    String root = 'src/test/resources/wiremock'
+}
+project.extensions.create('wiremock', WiremockPluginExtension)
+
+task mockServer() {
+    doLast {
+        javaexec {
+            classpath = configurations.wiremockStandalone
+            main = "com.github.tomakehurst.wiremock.standalone.WireMockServerRunner"
+            args "--port=$project.extensions.wiremock.port", "--root=$project.extensions.wiremock.root", project.extensions.wiremock.verbose?'--verbose':''
+        }
+    }
+}
+
+task prepareWireMockDocker  {
+    doLast {
+        copy {
+            from configurations.wiremockStandalone
+            into "${project.buildDir}/wiremock-docker"
+        }
+        copy{
+            from "$projectDir/src/main/wiremock/Dockerfile"
+            into "${project.buildDir}/wiremock-docker"
+            expand(project.properties)
+        }
+        copy {
+            from "$projectDir/src/test/resources/wiremock"
+            into "${project.buildDir}/wiremock-docker/wiremock"
+        }
+    }
+}
+
+task dockerBuildWireMock(type: Exec) {
+    dependsOn prepareWireMockDocker
+    workingDir "${project.buildDir}/wiremock-docker"
+    commandLine 'docker', 'build', '-t', 'ikar-mock', '.'
+}

@@ -1,0 +1,20 @@
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
+
+ext {
+    jacocoVersion = "0.8.4"
+}
+
+jacoco {
+    toolVersion = jacocoVersion
+    //reportsDir = file("${project.buildDir}/jacoco")
+}
+
+jacocoTestReport() {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+        csv.enabled = false
+    }
+}
+tasks.test.finalizedBy jacocoTestReport

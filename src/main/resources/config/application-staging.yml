@@ -1,0 +1,29 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: swag-preprod
+  mail:
+    host: smtp.eu.mailgun.org
+    port: 587
+    username: you-can-set-me-here
+    password: set-me-in-env-vars
+
+cors:
+  configurations:
+  - path: "/**"
+    configuration:
+      allowed-origins:
+      - "*"
+      allowed-methods:
+      - "*"
+      allowed-headers:
+      - "*"
+
+application:
+  project:
+    administration-url: "https://admin.preprod.swag.com"
+  libraries:
+    security:
+      jwt:
+        secretKey: set-me-in-env-vars

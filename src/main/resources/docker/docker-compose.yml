@@ -1,0 +1,169 @@
+version: '2'
+
+services:
+  proxy:
+    image: traefik
+    restart: always
+    command: |-
+      --logLevel=DEBUG
+      --web
+      --entrypoints='Name:http Address::80 Redirect.EntryPoint:https'
+      --entrypoints='Name:https Address::443 TLS'
+      --docker
+      --acme
+      --acme.entrypoint=https
+      --acme.email=valerian.guivarch@gmail.com
+      --acme.storage=/etc/traefik/acme.json
+      --acme.ondemand=false
+      --acme.onhostrule=true
+      --acme.httpChallenge.entryPoint=http
+    logging:
+      options:
+        max-size: 50m
+    networks:
+      - default
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik:/etc/traefik/
+
+  mongodb:
+    image: mongo:4.2.8-bionic
+    restart: always
+    logging:
+      options:
+        max-size: 50m
+    networks:
+      - inner
+    volumes:
+      - ./database-volume:/data/db
+    labels:
+      - "traefik.enable=false"
+  #
+  #  # Dev configuration
+  #  api-dev:
+  #    image: registry.appstud.com/swagger-backend:latest
+  #    restart: always
+  #    logging:
+  #      options:
+  #        max-size: 50m
+  #    depends_on:
+  #      - proxy
+  #      - mongodb
+  #    networks:
+  #      - default
+  #      - inner
+  #    labels:
+  #      - "traefik.backend=api"
+  #      - "traefik.frontend.rule=Host:api.dev.swagger-app.com"
+  #      - "traefik.port=8080"
+  #      - "traefik.docker.network=swagger_default"
+  #      - "traefik.frontend.entryPoints=http,https"
+  #    links:
+  #      - mongodb:mongodb
+  #    environment:
+  #      - SPRING_PROFILES_ACTIVE=dev,swagger
+  #      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017
+  #      - SPRING_DATA_MONGODB_DATABASE=swagger-dev
+  #      - SPRING_MAIL_PASSWORD=${DEV_SPRING_MAIL_PASSWORD}
+  #      - APPLICATION_GOOGLE_APIKEY=${DEV_APPLICATION_GOOGLE_APIKEY}
+  #      - APPSTUD_LIBRARIES_SECURITY_JWT_SECRETKEY=${DEV_APPSTUD_LIBRARIES_SECURITY_JWT_SECRETKEY}
+  #      - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
+  #      - "spring.http.multipart.max-file-size=100MB"
+  #      - "spring.http.multipart.max-request-size=100MB"
+  #
+  #    # Dev configuration
+  #  backoffice-dev:
+  #    image: registry.appstud.com/swagger-backoffice:latest
+  #    restart: always
+  #    logging:
+  #      options:
+  #        max-size: 50m
+  #    depends_on:
+  #      - proxy
+  #    labels:
+  #      - "traefik.backend=backoffice-dev"
+  #      - "traefik.frontend.rule=Host:admin.dev.swagger-app.com"
+  #      - "traefik.port=80"
+  #      - "traefik.docker.network=swagger_default"
+  #      - "traefik.frontend.entryPoints=http,https"
+  #    environment:
+  #      - REACT_APP_API_URL=http://api.dev.swagger-app.com/api
+
+  # Preprod configuration
+  api-preprod:
+    image: registry.appstud.com/swagger-backend:preproduction
+    restart: always
+    logging:
+      options:
+        max-size: 50m
+    depends_on:
+      - proxy
+      - mongodb
+    networks:
+      - default
+      - inner
+    labels:
+      - "traefik.backend=api-preprod"
+      - "traefik.frontend.rule=Host:api.preprod.swagger-app.com"
+      - "traefik.port=8080"
+      - "traefik.docker.network=swagger_default"
+      - "traefik.frontend.entryPoints=http,https"
+    links:
+      - mongodb:mongodb
+    environment:
+      - SPRING_PROFILES_ACTIVE=staging
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017
+      - SPRING_DATA_MONGODB_DATABASE=swagger-preprod
+      - SPRING_MAIL_PASSWORD=${PREPROD_SPRING_MAIL_PASSWORD}
+      - APPLICATION_GOOGLE_APIKEY=${PREPROD_APPLICATION_GOOGLE_APIKEY}
+      - APPSTUD_LIBRARIES_SECURITY_JWT_SECRETKEY=${PREPROD_APPSTUD_LIBRARIES_SECURITY_JWT_SECRETKEY}
+      - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
+      - "spring.http.multipart.max-file-size=100MB"
+      - "spring.http.multipart.max-request-size=100MB"
+
+  backoffice-preprod:
+    image: registry.appstud.com/swagger-backoffice:preproduction
+    restart: always
+    logging:
+      options:
+        max-size: 50m
+    depends_on:
+      - proxy
+    labels:
+      - "traefik.backend=backoffice-preprod"
+      - "traefik.frontend.rule=Host:admin.preprod.swagger-app.com"
+      - "traefik.port=80"
+      - "traefik.docker.network=swagger_default"
+      - "traefik.frontend.entryPoints=http,https"
+
+  # Default schedule is 0 0 * * * — runs every day at 00:00.
+  # restore: mongorestore --gzip --archive=/database-backups/20170218_025718
+  database-backup:
+    image: tenorok/mongodumper
+    restart: always
+    logging:
+      options:
+        max-size: 50m
+    depends_on:
+      - mongodb
+    networks:
+      - inner
+    labels:
+      traefik.enable: 'false'
+    links:
+      - mongodb:mongo
+    volumes:
+      - /database-backups:/backup
+    environment:
+      - MONGO_DB_NAMES=swagger-preprod swagger-dev
+      - BACKUP_EXPIRE_DAYS=2
+      - MONGO_PORT_27017_TCP_ADDR=mongo
+      - MONGO_PORT_27017_TCP_PORT=27017
+
+networks:
+  inner:
+    driver: bridge
+    internal: true

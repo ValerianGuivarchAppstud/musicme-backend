@@ -1,0 +1,83 @@
+image: atlassian/default-image:2
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          name: run tests for PR
+          image: openjdk:11-jdk-slim
+          caches:
+            - gradle
+          script:
+            - apt-get update && apt-get install -y git
+            - git checkout $BITBUCKET_PR_DESTINATION_BRANCH
+            - git merge $BITBUCKET_BRANCH
+            - bash ./gradlew clean test
+  branches:
+#    sprint*:
+#      - step:
+#          name: run tests
+#          image: openjdk:11-jdk-slim
+#          caches:
+#            - gradle
+#          script:
+#            - bash ./gradlew clean test
+#      - step:
+#          name: deploy to heroku
+#          trigger: manual
+#          script:
+#            - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git $BITBUCKET_BRANCH:master
+    master:
+      - step:
+          name: build project and push to docker
+          size: 2x
+          caches:
+            - gradle
+          script:
+            - docker build --no-cache -t swag-backend .
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
+            - docker tag swag-backend $DOCKER_HUB_REGISTRY/swag-backend:production
+            - docker push $DOCKER_HUB_REGISTRY/swag-backend:production
+            - docker tag swag-backend $DOCKER_HUB_REGISTRY/swag-backend:production-ci-${BITBUCKET_BUILD_NUMBER}
+            - docker push $DOCKER_HUB_REGISTRY/swag-backend:production-ci-${BITBUCKET_BUILD_NUMBER}
+          services:
+            - docker
+      - step:
+          name: deploy to heroku
+          trigger: manual
+          script:
+            - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git $BITBUCKET_BRANCH:master
+      - step:
+          name: deploy to ssh
+          trigger: manual
+          script:
+            - mkdir -p ~/.ssh
+            - cat bitbucket-pipelines-known-hosts >> ~/.ssh/known_hosts
+            - (umask  077 ; echo $SSH_KEY_PROD | base64 --decode > ~/.ssh/id_rsa_prod)
+            - ssh -p 2299 -i ~/.ssh/id_rsa_prod swag@prod.swag.com "docker-compose pull api; docker-compose up -d api"
+#    staging:
+#      - step:
+#          name: build project and push to docker
+#          caches:
+#            - gradle
+#          script:
+#            - docker build --no-cache -t swag-backend .
+#            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
+#            - docker tag swag-backend $DOCKER_HUB_REGISTRY/swag-backend:preproduction
+#            - docker push $DOCKER_HUB_REGISTRY/swag-backend:preproduction
+#            - docker tag swag-backend $DOCKER_HUB_REGISTRY/swag-backend:preproduction-ci-${BITBUCKET_BUILD_NUMBER}
+#            - docker push $DOCKER_HUB_REGISTRY/swag-backend:preproduction-ci-${BITBUCKET_BUILD_NUMBER}
+#          services:
+#            - docker
+#      - step:
+#          name: deploy to ssh
+#          trigger: manual
+#          script:
+#            - mkdir -p ~/.ssh
+#            - cat bitbucket-pipelines-known-hosts >> ~/.ssh/known_hosts
+#            - (umask  077 ; echo $SSH_KEY_PREPROD | base64 --decode > ~/.ssh/id_rsa_preprod)
+#            - ssh -p 2299 -i ~/.ssh/id_rsa_preprod swag@preprod.swag.com "docker-compose pull api-preprod; docker-compose up -d api-preprod"
+definitions:
+  services:
+    docker:
+      memory: 4096

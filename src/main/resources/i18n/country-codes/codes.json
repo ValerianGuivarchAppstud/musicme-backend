@@ -1,0 +1,1217 @@
+[
+  {
+    "name": "Afghanistan (‫افغانستان‬‎)",
+    "iso2": "af",
+    "code": "93"
+  },
+  {
+    "name": "Albania (Shqipëri)",
+    "iso2": "al",
+    "code": "355"
+  },
+  {
+    "name": "Algeria (‫الجزائر‬‎)",
+    "iso2": "dz",
+    "code": "213"
+  },
+  {
+    "name": "American Samoa",
+    "iso2": "as",
+    "code": "1684"
+  },
+  {
+    "name": "Andorra",
+    "iso2": "ad",
+    "code": "376"
+  },
+  {
+    "name": "Angola",
+    "iso2": "ao",
+    "code": "244"
+  },
+  {
+    "name": "Anguilla",
+    "iso2": "ai",
+    "code": "1264"
+  },
+  {
+    "name": "Antigua and Barbuda",
+    "iso2": "ag",
+    "code": "1268"
+  },
+  {
+    "name": "Argentina",
+    "iso2": "ar",
+    "code": "54"
+  },
+  {
+    "name": "Armenia (Հայաստան)",
+    "iso2": "am",
+    "code": "374"
+  },
+  {
+    "name": "Aruba",
+    "iso2": "aw",
+    "code": "297"
+  },
+  {
+    "name": "Australia",
+    "iso2": "au",
+    "code": "61"
+  },
+  {
+    "name": "Austria (Österreich)",
+    "iso2": "at",
+    "code": "43"
+  },
+  {
+    "name": "Azerbaijan (Azərbaycan)",
+    "iso2": "az",
+    "code": "994"
+  },
+  {
+    "name": "Bahamas",
+    "iso2": "bs",
+    "code": "1242"
+  },
+  {
+    "name": "Bahrain (‫البحرين‬‎)",
+    "iso2": "bh",
+    "code": "973"
+  },
+  {
+    "name": "Bangladesh (বাংলাদেশ)",
+    "iso2": "bd",
+    "code": "880"
+  },
+  {
+    "name": "Barbados",
+    "iso2": "bb",
+    "code": "1246"
+  },
+  {
+    "name": "Belarus (Беларусь)",
+    "iso2": "by",
+    "code": "375"
+  },
+  {
+    "name": "Belgium (België)",
+    "iso2": "be",
+    "code": "32"
+  },
+  {
+    "name": "Belize",
+    "iso2": "bz",
+    "code": "501"
+  },
+  {
+    "name": "Benin (Bénin)",
+    "iso2": "bj",
+    "code": "229"
+  },
+  {
+    "name": "Bermuda",
+    "iso2": "bm",
+    "code": "1441"
+  },
+  {
+    "name": "Bhutan (འབྲུག)",
+    "iso2": "bt",
+    "code": "975"
+  },
+  {
+    "name": "Bolivia",
+    "iso2": "bo",
+    "code": "591"
+  },
+  {
+    "name": "Bosnia and Herzegovina (Босна и Херцеговина)",
+    "iso2": "ba",
+    "code": "387"
+  },
+  {
+    "name": "Botswana",
+    "iso2": "bw",
+    "code": "267"
+  },
+  {
+    "name": "Brazil (Brasil)",
+    "iso2": "br",
+    "code": "55"
+  },
+  {
+    "name": "British Indian Ocean Territory",
+    "iso2": "io",
+    "code": "246"
+  },
+  {
+    "name": "British Virgin Islands",
+    "iso2": "vg",
+    "code": "1284"
+  },
+  {
+    "name": "Brunei",
+    "iso2": "bn",
+    "code": "673"
+  },
+  {
+    "name": "Bulgaria (България)",
+    "iso2": "bg",
+    "code": "359"
+  },
+  {
+    "name": "Burkina Faso",
+    "iso2": "bf",
+    "code": "226"
+  },
+  {
+    "name": "Burundi (Uburundi)",
+    "iso2": "bi",
+    "code": "257"
+  },
+  {
+    "name": "Cambodia (កម្ពុជា)",
+    "iso2": "kh",
+    "code": "855"
+  },
+  {
+    "name": "Cameroon (Cameroun)",
+    "iso2": "cm",
+    "code": "237"
+  },
+  {
+    "name": "Canada",
+    "iso2": "ca",
+    "code": "1"
+  },
+  {
+    "name": "Cape Verde (Kabu Verdi)",
+    "iso2": "cv",
+    "code": "238"
+  },
+  {
+    "name": "Caribbean Netherlands",
+    "iso2": "bq",
+    "code": "599"
+  },
+  {
+    "name": "Cayman Islands",
+    "iso2": "ky",
+    "code": "1345"
+  },
+  {
+    "name": "Central African Republic (République centrafricaine)",
+    "iso2": "cf",
+    "code": "236"
+  },
+  {
+    "name": "Chad (Tchad)",
+    "iso2": "td",
+    "code": "235"
+  },
+  {
+    "name": "Chile",
+    "iso2": "cl",
+    "code": "56"
+  },
+  {
+    "name": "China (中国)",
+    "iso2": "cn",
+    "code": "86"
+  },
+  {
+    "name": "Christmas Island",
+    "iso2": "cx",
+    "code": "61"
+  },
+  {
+    "name": "Cocos (Keeling) Islands",
+    "iso2": "cc",
+    "code": "61"
+  },
+  {
+    "name": "Colombia",
+    "iso2": "co",
+    "code": "57"
+  },
+  {
+    "name": "Comoros (‫جزر القمر‬‎)",
+    "iso2": "km",
+    "code": "269"
+  },
+  {
+    "name": "Congo (DRC) (Jamhuri ya Kidemokrasia ya Kongo)",
+    "iso2": "cd",
+    "code": "243"
+  },
+  {
+    "name": "Congo (Republic) (Congo-Brazzaville)",
+    "iso2": "cg",
+    "code": "242"
+  },
+  {
+    "name": "Cook Islands",
+    "iso2": "ck",
+    "code": "682"
+  },
+  {
+    "name": "Costa Rica",
+    "iso2": "cr",
+    "code": "506"
+  },
+  {
+    "name": "Côte d’Ivoire",
+    "iso2": "ci",
+    "code": "225"
+  },
+  {
+    "name": "Croatia (Hrvatska)",
+    "iso2": "hr",
+    "code": "385"
+  },
+  {
+    "name": "Cuba",
+    "iso2": "cu",
+    "code": "53"
+  },
+  {
+    "name": "Curaçao",
+    "iso2": "cw",
+    "code": "599"
+  },
+  {
+    "name": "Cyprus (Κύπρος)",
+    "iso2": "cy",
+    "code": "357"
+  },
+  {
+    "name": "Czech Republic (Česká republika)",
+    "iso2": "cz",
+    "code": "420"
+  },
+  {
+    "name": "Denmark (Danmark)",
+    "iso2": "dk",
+    "code": "45"
+  },
+  {
+    "name": "Djibouti",
+    "iso2": "dj",
+    "code": "253"
+  },
+  {
+    "name": "Dominica",
+    "iso2": "dm",
+    "code": "1767"
+  },
+  {
+    "name": "Dominican Republic (República Dominicana)",
+    "iso2": "do",
+    "code": "1"
+  },
+  {
+    "name": "Ecuador",
+    "iso2": "ec",
+    "code": "593"
+  },
+  {
+    "name": "Egypt (‫مصر‬‎)",
+    "iso2": "eg",
+    "code": "20"
+  },
+  {
+    "name": "El Salvador",
+    "iso2": "sv",
+    "code": "503"
+  },
+  {
+    "name": "Equatorial Guinea (Guinea Ecuatorial)",
+    "iso2": "gq",
+    "code": "240"
+  },
+  {
+    "name": "Eritrea",
+    "iso2": "er",
+    "code": "291"
+  },
+  {
+    "name": "Estonia (Eesti)",
+    "iso2": "ee",
+    "code": "372"
+  },
+  {
+    "name": "Ethiopia",
+    "iso2": "et",
+    "code": "251"
+  },
+  {
+    "name": "Falkland Islands (Islas Malvinas)",
+    "iso2": "fk",
+    "code": "500"
+  },
+  {
+    "name": "Faroe Islands (Føroyar)",
+    "iso2": "fo",
+    "code": "298"
+  },
+  {
+    "name": "Fiji",
+    "iso2": "fj",
+    "code": "679"
+  },
+  {
+    "name": "Finland (Suomi)",
+    "iso2": "fi",
+    "code": "358"
+  },
+  {
+    "name": "France",
+    "iso2": "fr",
+    "code": "33"
+  },
+  {
+    "name": "French Guiana (Guyane française)",
+    "iso2": "gf",
+    "code": "594"
+  },
+  {
+    "name": "French Polynesia (Polynésie française)",
+    "iso2": "pf",
+    "code": "689"
+  },
+  {
+    "name": "Gabon",
+    "iso2": "ga",
+    "code": "241"
+  },
+  {
+    "name": "Gambia",
+    "iso2": "gm",
+    "code": "220"
+  },
+  {
+    "name": "Georgia (საქართველო)",
+    "iso2": "ge",
+    "code": "995"
+  },
+  {
+    "name": "Germany (Deutschland)",
+    "iso2": "de",
+    "code": "49"
+  },
+  {
+    "name": "Ghana (Gaana)",
+    "iso2": "gh",
+    "code": "233"
+  },
+  {
+    "name": "Gibraltar",
+    "iso2": "gi",
+    "code": "350"
+  },
+  {
+    "name": "Greece (Ελλάδα)",
+    "iso2": "gr",
+    "code": "30"
+  },
+  {
+    "name": "Greenland (Kalaallit Nunaat)",
+    "iso2": "gl",
+    "code": "299"
+  },
+  {
+    "name": "Grenada",
+    "iso2": "gd",
+    "code": "1473"
+  },
+  {
+    "name": "Guadeloupe",
+    "iso2": "gp",
+    "code": "590"
+  },
+  {
+    "name": "Guam",
+    "iso2": "gu",
+    "code": "1671"
+  },
+  {
+    "name": "Guatemala",
+    "iso2": "gt",
+    "code": "502"
+  },
+  {
+    "name": "Guernsey",
+    "iso2": "gg",
+    "code": "44"
+  },
+  {
+    "name": "Guinea (Guinée)",
+    "iso2": "gn",
+    "code": "224"
+  },
+  {
+    "name": "Guinea-Bissau (Guiné Bissau)",
+    "iso2": "gw",
+    "code": "245"
+  },
+  {
+    "name": "Guyana",
+    "iso2": "gy",
+    "code": "592"
+  },
+  {
+    "name": "Haiti",
+    "iso2": "ht",
+    "code": "509"
+  },
+  {
+    "name": "Honduras",
+    "iso2": "hn",
+    "code": "504"
+  },
+  {
+    "name": "Hong Kong (香港)",
+    "iso2": "hk",
+    "code": "852"
+  },
+  {
+    "name": "Hungary (Magyarország)",
+    "iso2": "hu",
+    "code": "36"
+  },
+  {
+    "name": "Iceland (Ísland)",
+    "iso2": "is",
+    "code": "354"
+  },
+  {
+    "name": "India (भारत)",
+    "iso2": "in",
+    "code": "91"
+  },
+  {
+    "name": "Indonesia",
+    "iso2": "id",
+    "code": "62"
+  },
+  {
+    "name": "Iran (‫ایران‬‎)",
+    "iso2": "ir",
+    "code": "98"
+  },
+  {
+    "name": "Iraq (‫العراق‬‎)",
+    "iso2": "iq",
+    "code": "964"
+  },
+  {
+    "name": "Ireland",
+    "iso2": "ie",
+    "code": "353"
+  },
+  {
+    "name": "Isle of Man",
+    "iso2": "im",
+    "code": "44"
+  },
+  {
+    "name": "Israel (‫ישראל‬‎)",
+    "iso2": "il",
+    "code": "972"
+  },
+  {
+    "name": "Italy (Italia)",
+    "iso2": "it",
+    "code": "39"
+  },
+  {
+    "name": "Jamaica",
+    "iso2": "jm",
+    "code": "1"
+  },
+  {
+    "name": "Japan (日本)",
+    "iso2": "jp",
+    "code": "81"
+  },
+  {
+    "name": "Jersey",
+    "iso2": "je",
+    "code": "44"
+  },
+  {
+    "name": "Jordan (‫الأردن‬‎)",
+    "iso2": "jo",
+    "code": "962"
+  },
+  {
+    "name": "Kazakhstan (Казахстан)",
+    "iso2": "kz",
+    "code": "7"
+  },
+  {
+    "name": "Kenya",
+    "iso2": "ke",
+    "code": "254"
+  },
+  {
+    "name": "Kiribati",
+    "iso2": "ki",
+    "code": "686"
+  },
+  {
+    "name": "Kosovo",
+    "iso2": "xk",
+    "code": "383"
+  },
+  {
+    "name": "Kuwait (‫الكويت‬‎)",
+    "iso2": "kw",
+    "code": "965"
+  },
+  {
+    "name": "Kyrgyzstan (Кыргызстан)",
+    "iso2": "kg",
+    "code": "996"
+  },
+  {
+    "name": "Laos (ລາວ)",
+    "iso2": "la",
+    "code": "856"
+  },
+  {
+    "name": "Latvia (Latvija)",
+    "iso2": "lv",
+    "code": "371"
+  },
+  {
+    "name": "Lebanon (‫لبنان‬‎)",
+    "iso2": "lb",
+    "code": "961"
+  },
+  {
+    "name": "Lesotho",
+    "iso2": "ls",
+    "code": "266"
+  },
+  {
+    "name": "Liberia",
+    "iso2": "lr",
+    "code": "231"
+  },
+  {
+    "name": "Libya (‫ليبيا‬‎)",
+    "iso2": "ly",
+    "code": "218"
+  },
+  {
+    "name": "Liechtenstein",
+    "iso2": "li",
+    "code": "423"
+  },
+  {
+    "name": "Lithuania (Lietuva)",
+    "iso2": "lt",
+    "code": "370"
+  },
+  {
+    "name": "Luxembourg",
+    "iso2": "lu",
+    "code": "352"
+  },
+  {
+    "name": "Macau (澳門)",
+    "iso2": "mo",
+    "code": "853"
+  },
+  {
+    "name": "Macedonia (FYROM) (Македонија)",
+    "iso2": "mk",
+    "code": "389"
+  },
+  {
+    "name": "Madagascar (Madagasikara)",
+    "iso2": "mg",
+    "code": "261"
+  },
+  {
+    "name": "Malawi",
+    "iso2": "mw",
+    "code": "265"
+  },
+  {
+    "name": "Malaysia",
+    "iso2": "my",
+    "code": "60"
+  },
+  {
+    "name": "Maldives",
+    "iso2": "mv",
+    "code": "960"
+  },
+  {
+    "name": "Mali",
+    "iso2": "ml",
+    "code": "223"
+  },
+  {
+    "name": "Malta",
+    "iso2": "mt",
+    "code": "356"
+  },
+  {
+    "name": "Marshall Islands",
+    "iso2": "mh",
+    "code": "692"
+  },
+  {
+    "name": "Martinique",
+    "iso2": "mq",
+    "code": "596"
+  },
+  {
+    "name": "Mauritania (‫موريتانيا‬‎)",
+    "iso2": "mr",
+    "code": "222"
+  },
+  {
+    "name": "Mauritius (Moris)",
+    "iso2": "mu",
+    "code": "230"
+  },
+  {
+    "name": "Mayotte",
+    "iso2": "yt",
+    "code": "262"
+  },
+  {
+    "name": "Mexico (México)",
+    "iso2": "mx",
+    "code": "52"
+  },
+  {
+    "name": "Micronesia",
+    "iso2": "fm",
+    "code": "691"
+  },
+  {
+    "name": "Moldova (Republica Moldova)",
+    "iso2": "md",
+    "code": "373"
+  },
+  {
+    "name": "Monaco",
+    "iso2": "mc",
+    "code": "377"
+  },
+  {
+    "name": "Mongolia (Монгол)",
+    "iso2": "mn",
+    "code": "976"
+  },
+  {
+    "name": "Montenegro (Crna Gora)",
+    "iso2": "me",
+    "code": "382"
+  },
+  {
+    "name": "Montserrat",
+    "iso2": "ms",
+    "code": "1664"
+  },
+  {
+    "name": "Morocco (‫المغرب‬‎)",
+    "iso2": "ma",
+    "code": "212"
+  },
+  {
+    "name": "Mozambique (Moçambique)",
+    "iso2": "mz",
+    "code": "258"
+  },
+  {
+    "name": "Myanmar (Burma) (မြန်မာ)",
+    "iso2": "mm",
+    "code": "95"
+  },
+  {
+    "name": "Namibia (Namibië)",
+    "iso2": "na",
+    "code": "264"
+  },
+  {
+    "name": "Nauru",
+    "iso2": "nr",
+    "code": "674"
+  },
+  {
+    "name": "Nepal (नेपाल)",
+    "iso2": "np",
+    "code": "977"
+  },
+  {
+    "name": "Netherlands (Nederland)",
+    "iso2": "nl",
+    "code": "31"
+  },
+  {
+    "name": "New Caledonia (Nouvelle-Calédonie)",
+    "iso2": "nc",
+    "code": "687"
+  },
+  {
+    "name": "New Zealand",
+    "iso2": "nz",
+    "code": "64"
+  },
+  {
+    "name": "Nicaragua",
+    "iso2": "ni",
+    "code": "505"
+  },
+  {
+    "name": "Niger (Nijar)",
+    "iso2": "ne",
+    "code": "227"
+  },
+  {
+    "name": "Nigeria",
+    "iso2": "ng",
+    "code": "234"
+  },
+  {
+    "name": "Niue",
+    "iso2": "nu",
+    "code": "683"
+  },
+  {
+    "name": "Norfolk Island",
+    "iso2": "nf",
+    "code": "672"
+  },
+  {
+    "name": "North Korea (조선 민주주의 인민 공화국)",
+    "iso2": "kp",
+    "code": "850"
+  },
+  {
+    "name": "Northern Mariana Islands",
+    "iso2": "mp",
+    "code": "1670"
+  },
+  {
+    "name": "Norway (Norge)",
+    "iso2": "no",
+    "code": "47"
+  },
+  {
+    "name": "Oman (‫عُمان‬‎)",
+    "iso2": "om",
+    "code": "968"
+  },
+  {
+    "name": "Pakistan (‫پاکستان‬‎)",
+    "iso2": "pk",
+    "code": "92"
+  },
+  {
+    "name": "Palau",
+    "iso2": "pw",
+    "code": "680"
+  },
+  {
+    "name": "Palestine (‫فلسطين‬‎)",
+    "iso2": "ps",
+    "code": "970"
+  },
+  {
+    "name": "Panama (Panamá)",
+    "iso2": "pa",
+    "code": "507"
+  },
+  {
+    "name": "Papua New Guinea",
+    "iso2": "pg",
+    "code": "675"
+  },
+  {
+    "name": "Paraguay",
+    "iso2": "py",
+    "code": "595"
+  },
+  {
+    "name": "Peru (Perú)",
+    "iso2": "pe",
+    "code": "51"
+  },
+  {
+    "name": "Philippines",
+    "iso2": "ph",
+    "code": "63"
+  },
+  {
+    "name": "Poland (Polska)",
+    "iso2": "pl",
+    "code": "48"
+  },
+  {
+    "name": "Portugal",
+    "iso2": "pt",
+    "code": "351"
+  },
+  {
+    "name": "Puerto Rico",
+    "iso2": "pr",
+    "code": "1"
+  },
+  {
+    "name": "Qatar (‫قطر‬‎)",
+    "iso2": "qa",
+    "code": "974"
+  },
+  {
+    "name": "Réunion (La Réunion)",
+    "iso2": "re",
+    "code": "262"
+  },
+  {
+    "name": "Romania (România)",
+    "iso2": "ro",
+    "code": "40"
+  },
+  {
+    "name": "Russia (Россия)",
+    "iso2": "ru",
+    "code": "7"
+  },
+  {
+    "name": "Rwanda",
+    "iso2": "rw",
+    "code": "250"
+  },
+  {
+    "name": "Saint Barthélemy",
+    "iso2": "bl",
+    "code": "590"
+  },
+  {
+    "name": "Saint Helena",
+    "iso2": "sh",
+    "code": "290"
+  },
+  {
+    "name": "Saint Kitts and Nevis",
+    "iso2": "kn",
+    "code": "1869"
+  },
+  {
+    "name": "Saint Lucia",
+    "iso2": "lc",
+    "code": "1758"
+  },
+  {
+    "name": "Saint Martin (Saint-Martin (partie française))",
+    "iso2": "mf",
+    "code": "590"
+  },
+  {
+    "name": "Saint Pierre and Miquelon (Saint-Pierre-et-Miquelon)",
+    "iso2": "pm",
+    "code": "508"
+  },
+  {
+    "name": "Saint Vincent and the Grenadines",
+    "iso2": "vc",
+    "code": "1784"
+  },
+  {
+    "name": "Samoa",
+    "iso2": "ws",
+    "code": "685"
+  },
+  {
+    "name": "San Marino",
+    "iso2": "sm",
+    "code": "378"
+  },
+  {
+    "name": "São Tomé and Príncipe (São Tomé e Príncipe)",
+    "iso2": "st",
+    "code": "239"
+  },
+  {
+    "name": "Saudi Arabia (‫المملكة العربية السعودية‬‎)",
+    "iso2": "sa",
+    "code": "966"
+  },
+  {
+    "name": "Senegal (Sénégal)",
+    "iso2": "sn",
+    "code": "221"
+  },
+  {
+    "name": "Serbia (Србија)",
+    "iso2": "rs",
+    "code": "381"
+  },
+  {
+    "name": "Seychelles",
+    "iso2": "sc",
+    "code": "248"
+  },
+  {
+    "name": "Sierra Leone",
+    "iso2": "sl",
+    "code": "232"
+  },
+  {
+    "name": "Singapore",
+    "iso2": "sg",
+    "code": "65"
+  },
+  {
+    "name": "Sint Maarten",
+    "iso2": "sx",
+    "code": "1721"
+  },
+  {
+    "name": "Slovakia (Slovensko)",
+    "iso2": "sk",
+    "code": "421"
+  },
+  {
+    "name": "Slovenia (Slovenija)",
+    "iso2": "si",
+    "code": "386"
+  },
+  {
+    "name": "Solomon Islands",
+    "iso2": "sb",
+    "code": "677"
+  },
+  {
+    "name": "Somalia (Soomaaliya)",
+    "iso2": "so",
+    "code": "252"
+  },
+  {
+    "name": "South Africa",
+    "iso2": "za",
+    "code": "27"
+  },
+  {
+    "name": "South Korea (대한민국)",
+    "iso2": "kr",
+    "code": "82"
+  },
+  {
+    "name": "South Sudan (‫جنوب السودان‬‎)",
+    "iso2": "ss",
+    "code": "211"
+  },
+  {
+    "name": "Spain (España)",
+    "iso2": "es",
+    "code": "34"
+  },
+  {
+    "name": "Sri Lanka (ශ්‍රී ලංකාව)",
+    "iso2": "lk",
+    "code": "94"
+  },
+  {
+    "name": "Sudan (‫السودان‬‎)",
+    "iso2": "sd",
+    "code": "249"
+  },
+  {
+    "name": "Suriname",
+    "iso2": "sr",
+    "code": "597"
+  },
+  {
+    "name": "Svalbard and Jan Mayen",
+    "iso2": "sj",
+    "code": "47"
+  },
+  {
+    "name": "Swaziland",
+    "iso2": "sz",
+    "code": "268"
+  },
+  {
+    "name": "Sweden (Sverige)",
+    "iso2": "se",
+    "code": "46"
+  },
+  {
+    "name": "Switzerland (Schweiz)",
+    "iso2": "ch",
+    "code": "41"
+  },
+  {
+    "name": "Syria (‫سوريا‬‎)",
+    "iso2": "sy",
+    "code": "963"
+  },
+  {
+    "name": "Taiwan (台灣)",
+    "iso2": "tw",
+    "code": "886"
+  },
+  {
+    "name": "Tajikistan",
+    "iso2": "tj",
+    "code": "992"
+  },
+  {
+    "name": "Tanzania",
+    "iso2": "tz",
+    "code": "255"
+  },
+  {
+    "name": "Thailand (ไทย)",
+    "iso2": "th",
+    "code": "66"
+  },
+  {
+    "name": "Timor-Leste",
+    "iso2": "tl",
+    "code": "670"
+  },
+  {
+    "name": "Togo",
+    "iso2": "tg",
+    "code": "228"
+  },
+  {
+    "name": "Tokelau",
+    "iso2": "tk",
+    "code": "690"
+  },
+  {
+    "name": "Tonga",
+    "iso2": "to",
+    "code": "676"
+  },
+  {
+    "name": "Trinidad and Tobago",
+    "iso2": "tt",
+    "code": "1868"
+  },
+  {
+    "name": "Tunisia (‫تونس‬‎)",
+    "iso2": "tn",
+    "code": "216"
+  },
+  {
+    "name": "Turkey (Türkiye)",
+    "iso2": "tr",
+    "code": "90"
+  },
+  {
+    "name": "Turkmenistan",
+    "iso2": "tm",
+    "code": "993"
+  },
+  {
+    "name": "Turks and Caicos Islands",
+    "iso2": "tc",
+    "code": "1649"
+  },
+  {
+    "name": "Tuvalu",
+    "iso2": "tv",
+    "code": "688"
+  },
+  {
+    "name": "U.S. Virgin Islands",
+    "iso2": "vi",
+    "code": "1340"
+  },
+  {
+    "name": "Uganda",
+    "iso2": "ug",
+    "code": "256"
+  },
+  {
+    "name": "Ukraine (Україна)",
+    "iso2": "ua",
+    "code": "380"
+  },
+  {
+    "name": "United Arab Emirates (‫الإمارات العربية المتحدة‬‎)",
+    "iso2": "ae",
+    "code": "971"
+  },
+  {
+    "name": "United Kingdom",
+    "iso2": "gb",
+    "code": "44"
+  },
+  {
+    "name": "United States",
+    "iso2": "us",
+    "code": "1"
+  },
+  {
+    "name": "Uruguay",
+    "iso2": "uy",
+    "code": "598"
+  },
+  {
+    "name": "Uzbekistan (Oʻzbekiston)",
+    "iso2": "uz",
+    "code": "998"
+  },
+  {
+    "name": "Vanuatu",
+    "iso2": "vu",
+    "code": "678"
+  },
+  {
+    "name": "Vatican City (Città del Vaticano)",
+    "iso2": "va",
+    "code": "39"
+  },
+  {
+    "name": "Venezuela",
+    "iso2": "ve",
+    "code": "58"
+  },
+  {
+    "name": "Vietnam (Việt Nam)",
+    "iso2": "vn",
+    "code": "84"
+  },
+  {
+    "name": "Wallis and Futuna (Wallis-et-Futuna)",
+    "iso2": "wf",
+    "code": "681"
+  },
+  {
+    "name": "Western Sahara (‫الصحراء الغربية‬‎)",
+    "iso2": "eh",
+    "code": "212"
+  },
+  {
+    "name": "Yemen (‫اليمن‬‎)",
+    "iso2": "ye",
+    "code": "967"
+  },
+  {
+    "name": "Zambia",
+    "iso2": "zm",
+    "code": "260"
+  },
+  {
+    "name": "Zimbabwe",
+    "iso2": "zw",
+    "code": "263"
+  },
+  {
+    "name": "Åland Islands",
+    "iso2": "ax",
+    "code": "358"
+  }
+]

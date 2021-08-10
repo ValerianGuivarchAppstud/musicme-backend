@@ -1,0 +1,34 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: swag-prod
+  mail:
+    host: smtp.swag.org
+    port: 587
+    username: you-can-set-me-here
+    password: set-me-in-env-vars
+
+cors:
+  configurations:
+    - path: "/**"
+      configuration:
+        allowedOrigins:
+          - https://www.swag.com
+          - https://admin.swag.com
+        allowedMethods:
+          - GET
+          - PUT
+          - POST
+          - DELETE
+          - OPTIONS
+        allowedHeaders:
+          - "*"
+
+application:
+  project:
+    administration-url: "https://admin.swag.com"
+  libraries:
+    security:
+      jwt:
+        secretKey: set-me-in-env-vars

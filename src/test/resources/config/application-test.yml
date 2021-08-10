@@ -1,0 +1,39 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://swag-test:12346
+  mail:
+    host: localhost
+    port: 12345
+
+cors:
+  configurations:
+    - path: "/api/**"
+      configuration:
+        allowed-origins:
+          - "*"
+        allowed-methods:
+          - "*"
+        allowed-headers:
+          - "*"
+
+data:
+  email:
+    active: false
+    from: "swag@swag.com"
+
+application:
+  libraries:
+    errors:
+      enabled: true
+    security:
+      jwt:
+        secretKey: roomful-chaplain-ledge-variant-although-siesta-roomful-chaplain-ledge-variant-although-siesta
+  mockedApi:
+    apiUrl: http://localhost:8081/externalService/
+
+server:
+  port: 10344
+  address: localhost
+
+logging.level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
