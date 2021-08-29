@@ -46,9 +46,7 @@ class AuthenticationService {
         val refreshToken = jwtTokenService.allocateRefreshToken(authentication, accessToken)
         val refreshTokenExpirationDate = jwtTokenService.refreshExpirationDate()
         val accountId = authentication.principal.toString()
-        val authority = accountProvider.findOneById(accountId).toAccount().authority
         return JwtAuthResponse(
-            authority,
             accountId,
             accessToken,
             accessTokenExpiration,
@@ -93,6 +91,10 @@ class AuthenticationService {
         val request = EmailAuthenticationRequest(email, code)
         val authentication = authenticationProvider.authenticate(request)
         return generateAuthResponse(authentication)
+    }
+
+    fun addFirebaseToken(token: String) {
+
     }
 
     fun generateTokenByMail(mail: String): VerificationCode {

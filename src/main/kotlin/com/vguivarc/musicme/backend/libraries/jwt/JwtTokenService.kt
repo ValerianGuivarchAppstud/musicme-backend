@@ -121,10 +121,8 @@ class JwtTokenService(val jwtProperties: JwtProperties) : TokenService {
 
     fun createAuthentication(claims: Claims): Authentication {
         val login = claims.subject
-        // fetch the account to check the authorities
-        val authority = accountProvider.findOneById(login).toAccount().authority.value
         // add the authorities to the access token
-        return AccessToken(UserPrincipal(login), "", listOf(SimpleGrantedAuthority(authority)))
+        return AccessToken(UserPrincipal(login), "", listOf(SimpleGrantedAuthority("USER")))
     }
 
     fun createAuthentication(key: JwtToken): Authentication {

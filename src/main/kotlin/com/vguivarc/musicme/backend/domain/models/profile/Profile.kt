@@ -5,8 +5,12 @@ import com.vguivarc.musicme.backend.libraries.entities.Updatable
 data class Profile(
     val id: String = "",
     val idAccount: String = "",
+
     @Updatable
-    val firstName: String? = null,
+    val nickname: String? = null,
+
     @Updatable
-    val lastName: String? = null
+    val pictureUrl: String? = null,
+
+    val contactsId: MutableList<String> = mutableListOf()
 )

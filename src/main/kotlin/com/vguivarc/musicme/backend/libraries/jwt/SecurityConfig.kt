@@ -3,7 +3,6 @@ package com.vguivarc.musicme.backend.libraries.jwt
 import com.vguivarc.musicme.backend.data.auth.DeviceAuthenticationProvider
 import com.vguivarc.musicme.backend.data.auth.EmailAuthenticationProvider
 import com.vguivarc.musicme.backend.data.auth.PasswordAuthenticationProvider
-import com.vguivarc.musicme.backend.domain.models.nested.Authority
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpStatus
@@ -50,14 +49,11 @@ class SecurityConfig(
             .antMatcher("/api/**/**")
             .authorizeRequests()
             .antMatchers(
-                "/api/**/client/auth/**",
-                "/api/**/admin/auth/**"
+                "/api/**/user/auth/**"
             ).permitAll()
             .antMatchers("/actuator/**").permitAll()
             .antMatchers("/api/**/utils/**").permitAll()
             .antMatchers("/api/**/i18n/**").authenticated()
-            .antMatchers("/api/**/admin/**").hasAuthority(Authority.ADMIN.value)
-            .antMatchers("/api/**/client/**").hasAuthority(Authority.USER.value)
             .and()
             .addFilterBefore(
                 JwtTokenFilter(

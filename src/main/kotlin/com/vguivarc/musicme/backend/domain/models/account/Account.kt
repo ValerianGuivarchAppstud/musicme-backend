@@ -1,7 +1,6 @@
 package com.vguivarc.musicme.backend.domain.models.account
 
 import com.vguivarc.musicme.backend.domain.models.nested.AccountStatus
-import com.vguivarc.musicme.backend.domain.models.nested.Authority
 import com.vguivarc.musicme.backend.libraries.entities.Updatable
 import java.time.ZonedDateTime
 
@@ -15,8 +14,6 @@ data class Account(
     val deviceId: String? = null,
     var password: String? = null,
     val uuid: String? = null,
-    @Updatable
-    val authority: Authority = Authority.UNKNOWN,
     @Updatable
     val status: AccountStatus = AccountStatus.NEW,
     val secret: String? = null

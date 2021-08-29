@@ -24,7 +24,7 @@ enum class DomainExceptions(
         HttpStatus.CONFLICT
     ),
     ACCOUNT_NOT_CREATED(
-        "We could not create this client",
+        "We could not create this user",
         HttpStatus.INTERNAL_SERVER_ERROR
     ),
     INVALID_DATE(

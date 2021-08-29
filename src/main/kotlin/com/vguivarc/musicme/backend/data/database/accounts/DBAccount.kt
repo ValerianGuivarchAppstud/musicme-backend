@@ -2,7 +2,6 @@ package com.vguivarc.musicme.backend.data.database.accounts
 
 import com.vguivarc.musicme.backend.domain.models.account.Account
 import com.vguivarc.musicme.backend.domain.models.nested.AccountStatus
-import com.vguivarc.musicme.backend.domain.models.nested.Authority
 import com.vguivarc.musicme.backend.domain.providers.account.responses.IAccountResponse
 import com.vguivarc.musicme.backend.libraries.entities.Updatable
 import org.springframework.data.annotation.*
@@ -26,9 +25,6 @@ data class DBAccount(
 
     @Updatable
     var password: String? = null,
-
-    @Updatable
-    var authority: Authority = Authority.USER,
 
     @Updatable
     var status: AccountStatus = AccountStatus.NEW,
@@ -64,7 +60,6 @@ data class DBAccount(
             uuid = uuid,
             email = email,
             deviceId = deviceId,
-            authority = authority,
             secret = secret,
             status = status,
             createdDate = createdDate

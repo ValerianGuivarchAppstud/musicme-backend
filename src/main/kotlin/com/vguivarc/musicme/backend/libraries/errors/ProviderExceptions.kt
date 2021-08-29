@@ -8,29 +8,26 @@ enum class ProviderExceptions(
     private val givenHttpStatus: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR
 ) : AbstractError {
     LDF_ACCOUNT_NOT_FOUND
-    ("Client not found in database", HttpStatus.NOT_FOUND),
+    ("User not found in database", HttpStatus.NOT_FOUND),
     PROVIDER_NOT_FOUND
     ("Provider not found for this type of entity", HttpStatus.NOT_FOUND),
     DB_ACCOUNT_NOT_FOUND
-    ("Client not found in our database", HttpStatus.NOT_FOUND),
+    ("User not found in our database", HttpStatus.NOT_FOUND),
     DB_ACCOUNT_ALREADY_EXISTS
-    ("Client already exists", HttpStatus.BAD_REQUEST),
+    ("User already exists", HttpStatus.BAD_REQUEST),
     DB_PROFILE_NOT_FOUND
     ("Profile not found in our database", HttpStatus.NOT_FOUND),
     DB_PROFILE_ALREADY_EXISTS
-    ("Profile already exists", HttpStatus.BAD_REQUEST),
-    DB_INQUIRY_NOT_FOUND
-    ("Inquiry not found in our database", HttpStatus.NOT_FOUND),
-    MISSING_FIELD
-    ("Missing field in order to persist in our database", HttpStatus.NOT_FOUND),
-    DB_CODE_NOT_FOUND
-    ("We could not found verification code in our database", HttpStatus.NOT_FOUND),
-    SERVICE_DISABLED
-    ("Service disabled, check application properties", HttpStatus.FAILED_DEPENDENCY),
-    CODE_ALREADY_SENT
-    ("A code has already been sent, please wait until this code expires.", HttpStatus.NOT_ACCEPTABLE),
-    MISSING_PROPERTY
-    ("Missing property, check application properties", HttpStatus.FAILED_DEPENDENCY);
+        ("Profile already exists", HttpStatus.BAD_REQUEST),
+    DB_FAVORITE_ALREADY_EXISTS
+        ("Favorite already exists", HttpStatus.BAD_REQUEST),
+    DB_FAVORITE_NOT_FOUND
+        ("Favorite not found in our database", HttpStatus.NOT_FOUND),
+    DB_CONTACT_ALREADY_EXISTS
+        ("Contact already exists", HttpStatus.BAD_REQUEST),
+    DB_CONTACT_NOT_FOUND
+        ("Contact not found in our database", HttpStatus.NOT_FOUND),
+    ;
 
     override val statusCode: HttpStatus
         get() = this.givenHttpStatus

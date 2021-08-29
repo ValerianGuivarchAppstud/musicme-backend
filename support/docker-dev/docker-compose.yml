@@ -1,21 +1,26 @@
-version: '3.1'
+version: "3.1"
+
 services:
-  mongo:
-    container_name: swag-mongo
+  db:
+    container_name: musicme-mongoDB
     image: mongo:4.4.2-bionic
     ports:
       - 127.0.0.1:27017:27017
+    restart: always
     volumes:
       - "./mongo-share:/tmp/data"
       - "./mongo-data:/data/db"
-    # environment:
-    #   ME_CONFIG_MONGODB_ADMINUSERNAME: root
-    #   ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    environment:
+        MONGODB_ROOT_PASSWORD: music_2_me_3_app
+        MONGODB_USERNAME: musicMeApp
+        MONGODB_PASSWORD: music_2_me_3_app
+        MONGODB_DATABASE: musicMeApp_mongodb
   smtp4dev:
-    container_name: swag-smtp4dev
+    container_name: musicme-smtp4dev
     image: rnwood/smtp4dev:linux-amd64-v3
     volumes:
       - "./smtp4dev:/smtp4dev"
     ports:
       - 127.0.0.1:8085:80
       - 127.0.0.1:12345:25
+

@@ -15,5 +15,4 @@ interface DBAccountRepository : MongoRepository<DBAccount, String> {
     fun findAllByEmailContains(email: String, p: Pageable): Page<IAccountResponse>
     fun findAllByIdIn(ids: List<String>, p: Pageable): Page<IAccountResponse>
     fun findAllByStatusContains(status: String, p: Pageable): Page<IAccountResponse>
-    fun findAllByAuthorityContains(authority: String, p: Pageable): Page<IAccountResponse>
 }

@@ -19,8 +19,7 @@ class DBProfileProvider : IProfileProvider {
         return DBProfile(
             id = if (this.id.isBlank()) { null } else { this.id },
             idAccount = idAccount,
-            firstName = firstName,
-            lastName = lastName
+            nickName = nickname
         )
     }
 

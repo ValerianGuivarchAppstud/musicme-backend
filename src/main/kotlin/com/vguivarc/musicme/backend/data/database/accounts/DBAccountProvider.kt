@@ -1,7 +1,6 @@
 package com.vguivarc.musicme.backend.data.database.accounts
 
 import com.vguivarc.musicme.backend.domain.models.account.Account
-import com.vguivarc.musicme.backend.domain.models.nested.Authority
 import com.vguivarc.musicme.backend.domain.providers.account.IAccountProvider
 import com.vguivarc.musicme.backend.domain.providers.account.responses.IAccountResponse
 import com.vguivarc.musicme.backend.libraries.entities.EntityUtils
@@ -27,7 +26,6 @@ class DBAccountProvider : IAccountProvider {
         return DBAccount(
             id = if (this.id.isBlank()) { null } else { this.id },
             email = email,
-            authority = authority,
             status = status,
             secret = secret,
             deviceId = deviceId,
@@ -95,10 +93,6 @@ class DBAccountProvider : IAccountProvider {
         return repository.findAllByStatusContains(status, p)
     }
 
-    override fun findAllByAuthorityContains(authority: String, p: Pageable): Page<IAccountResponse> {
-        return repository.findAllByAuthorityContains(authority, p)
-    }
-
     override fun findAllWithId(ids: List<String>, p: Pageable): Page<IAccountResponse> {
         return repository.findAllByIdIn(ids, p)
     }
@@ -129,7 +123,6 @@ class DBAccountProvider : IAccountProvider {
         val account = repository.findOneByEmail(email)
             ?: DBAccount(
                 email = email,
-                authority = Authority.USER,
                 secret = generateSecret()
             )
         return repository.save(account)

@@ -18,7 +18,7 @@ class ProfileService {
 
     fun updateProfile(profile: Profile, profileUpdate: Profile): Profile {
         return profileProvider.update(
-            EntityUtils.update(profile, profileUpdate).copy(firstName = profile.firstName, lastName = profile.lastName)
+            EntityUtils.update(profile, profileUpdate)
         ).toProfile()
     }
 

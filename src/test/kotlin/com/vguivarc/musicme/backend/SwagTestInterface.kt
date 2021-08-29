@@ -8,12 +8,10 @@ import com.vguivarc.musicme.backend.data.database.verificationcodes.DBVerificati
 import com.vguivarc.musicme.backend.domain.models.VerificationCode
 import com.vguivarc.musicme.backend.domain.models.account.Account
 import com.vguivarc.musicme.backend.domain.models.nested.AccountStatus
-import com.vguivarc.musicme.backend.domain.models.nested.Authority
 import com.vguivarc.musicme.backend.domain.providers.account.IAccountProvider
 import com.vguivarc.musicme.backend.domain.providers.email.IEmailProvider
 import com.vguivarc.musicme.backend.testhelpers.MongoInitializer
-import com.vguivarc.musicme.backend.web.api.v1.client.auth.entities.JwtAuthResponseVM
-import com.vguivarc.musicme.backend.web.api.v1.client.auth.requests.LoginWithDeviceRequest
+import com.vguivarc.musicme.backend.web.api.v1.user.auth.entities.JwtAuthResponseVM
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
@@ -82,7 +80,7 @@ abstract class SwagTestInterface {
     lateinit var emailProvider: IEmailProvider
 
     val lorem = LoremIpsum.getInstance()
-    private var accountClientId = ""
+    private var accountUserId = ""
     private var accountProfessionalId = ""
 
     lateinit var mvc: MockMvc
@@ -98,7 +96,7 @@ abstract class SwagTestInterface {
             .apply<DefaultMockMvcBuilder>(SecurityMockMvcConfigurers.springSecurity())
             .build()
 
-        this.addTestAccountClient()
+        this.addTestAccountUser()
         this.addTestAccountProfessional()
     }
 
@@ -106,14 +104,14 @@ abstract class SwagTestInterface {
     fun after() {
         this.cleanUp()
     }
-
-    fun getClientAccessToken(): JwtAuthResponseVM {
+/*
+    fun getUserAccessToken(): JwtAuthResponseVM {
         val response = this.mvc.perform(
-            MockMvcRequestBuilders.post("/api/v1/client/auth/login/device")
+            MockMvcRequestBuilders.post("/api/v1/user/auth/login/device")
                 .content(
                     mapper.writeValueAsString(
                         LoginWithDeviceRequest(
-                            getTestAccountClient().deviceId!!
+                            getTestAccountUser().deviceId!!
                         )
                     )
                 )
@@ -131,24 +129,23 @@ abstract class SwagTestInterface {
             json.get("refresh_token").asText(),
             json.get("refresh_token_expiration").asLong()
         )
-    }
+    }*/
 
-    fun addTestAccountClient(): Account {
+    fun addTestAccountUser(): Account {
         val account = accountProvider.create(
             Account(
-                deviceId = "client@test.com",
-                // email = "client@test.com",
+                deviceId = "user@test.com",
+                // email = "user@test.com",
                 phone = "0203040506",
-                authority = Authority.USER,
                 status = AccountStatus.ACTIVE
             )
         ).toAccount()
-        accountClientId = account.id
+        accountUserId = account.id
         return account
     }
 
-    fun getTestAccountClient(): Account {
-        return accountProvider.findOneById(accountClientId).toAccount()
+    fun getTestAccountUser(): Account {
+        return accountProvider.findOneById(accountUserId).toAccount()
     }
 
     fun addTestAccountProfessional(): Account {
@@ -158,7 +155,6 @@ abstract class SwagTestInterface {
                 email = "pro@test.com",
                 phone = "0606060606",
                 password = "password-pro",
-                authority = Authority.USER,
                 status = AccountStatus.ACTIVE
             )
         ).toAccount()
@@ -172,7 +168,7 @@ abstract class SwagTestInterface {
                 DBVerificationCode(
                     code = "1234",
                     expirationDate = ZonedDateTime.now().plusDays(1),
-                    accountId = getTestAccountClient().id,
+                    accountId = getTestAccountUser().id,
                     isUsed = false
                 )
             ).toVerificationCode()

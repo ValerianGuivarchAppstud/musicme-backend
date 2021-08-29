@@ -21,7 +21,6 @@ interface IAccountProvider {
     fun findAll(p: Pageable): Page<IAccountResponse>
     fun findAllByEmailContains(email: String, p: Pageable): Page<IAccountResponse>
     fun findAllByStatusContains(status: String, p: Pageable): Page<IAccountResponse>
-    fun findAllByAuthorityContains(authority: String, p: Pageable): Page<IAccountResponse>
     fun findAllWithId(ids: List<String>, p: Pageable): Page<IAccountResponse>
 
     fun existByEmail(email: String): Boolean

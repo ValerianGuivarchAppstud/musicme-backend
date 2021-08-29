@@ -29,10 +29,6 @@ class AccountService {
         return accountProvider.findAllByEmailContains(email, p).map { it.toAccount() }
     }
 
-    fun findAllByAuthorityContains(authority: String, p: Pageable): Page<Account> {
-        return accountProvider.findAllByAuthorityContains(authority, p).map { it.toAccount() }
-    }
-
     fun findAllByStatusContains(status: String, p: Pageable): Page<Account> {
         return accountProvider.findAllByStatusContains(status, p).map { it.toAccount() }
     }

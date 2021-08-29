@@ -4,8 +4,10 @@ import com.vguivarc.musicme.backend.domain.models.profile.Profile
 import com.vguivarc.musicme.backend.domain.providers.profile.responses.IProfileResponse
 import com.vguivarc.musicme.backend.libraries.entities.Updatable
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
 
-class DBProfile(
+@Document(collection = "profiles")
+data class DBProfile(
 
     @Id
     var id: String? = null,
@@ -13,10 +15,7 @@ class DBProfile(
     var idAccount: String? = null,
 
     @Updatable
-    var firstName: String? = null,
-
-    @Updatable
-    var lastName: String? = null
+    var nickName: String? = null
 
 ) : IProfileResponse {
 
@@ -24,8 +23,7 @@ class DBProfile(
         return Profile(
             id = id ?: "",
             idAccount = idAccount ?: "",
-            firstName = firstName,
-            lastName = lastName
+            nickname = nickName
         )
     }
 }
