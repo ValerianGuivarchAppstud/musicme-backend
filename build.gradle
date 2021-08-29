@@ -150,6 +150,7 @@ gradle.taskGraph.whenReady {
 
 
 dependencies {
+
     implementation("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
@@ -214,6 +215,8 @@ dependencies {
     compile("org.javassist:javassist:3.27.0-GA") // workaround for ${javassist.version} placeholder issue*
     testImplementation("org.testcontainers:mongodb:1.15.1")
     compile("com.github.appstud:mongobee:0.14")
+
+
 }
 
 apply from: rootProject.file("gradle/setup.gradle")

@@ -3,7 +3,7 @@ package com.vguivarc.musicme.backend.domain.services
 import com.vguivarc.musicme.backend.domain.models.VerificationCode
 import com.vguivarc.musicme.backend.domain.models.account.Account
 import com.vguivarc.musicme.backend.domain.models.account.AccountAuthentication
-import com.vguivarc.musicme.backend.domain.models.auth.DeviceAuthenticationRequest
+import com.vguivarc.musicme.backend.domain.models.auth.FacebookAuthenticationRequest
 import com.vguivarc.musicme.backend.domain.models.auth.EmailAuthenticationRequest
 import com.vguivarc.musicme.backend.domain.models.auth.JwtAuthResponse
 import com.vguivarc.musicme.backend.domain.models.auth.PasswordAuthenticationRequest
@@ -64,10 +64,10 @@ class AuthenticationService {
         return auth.principal.toString()
     }
 
-// DEVICE ID
+// FACEBOOK
 
-    fun authenticateByDeviceId(deviceId: String): JwtAuthResponse {
-        val request = DeviceAuthenticationRequest(deviceId)
+    fun authenticateByFacebookToken(facebookToken: String): JwtAuthResponse {
+        val request = FacebookAuthenticationRequest(facebookToken)
         val authentication = authenticationProvider.authenticate(request)
         return generateAuthResponse(authentication)
     }

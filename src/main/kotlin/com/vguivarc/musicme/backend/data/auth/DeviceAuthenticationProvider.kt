@@ -1,7 +1,7 @@
 package com.vguivarc.musicme.backend.data.auth
 
 import com.vguivarc.musicme.backend.domain.models.account.AccountAuthentication
-import com.vguivarc.musicme.backend.domain.models.auth.DeviceAuthenticationRequest
+import com.vguivarc.musicme.backend.domain.models.auth.FacebookAuthenticationRequest
 import com.vguivarc.musicme.backend.domain.providers.account.IAccountProvider
 import com.vguivarc.musicme.backend.libraries.errors.BaseExceptions
 import com.vguivarc.musicme.backend.libraries.errors.DomainException
@@ -17,7 +17,7 @@ class DeviceAuthenticationProvider : AuthenticationProvider {
     lateinit var accountProvider: IAccountProvider
 
     override fun authenticate(authentication: Authentication?): Authentication {
-        if (authentication !is DeviceAuthenticationRequest) {
+        if (authentication !is FacebookAuthenticationRequest) {
             throw DomainException(BaseExceptions.ACCESS_DENIED)
         }
         val account = accountProvider.findByDeviceId(deviceId = authentication.principal as String).toAccount()
@@ -25,6 +25,6 @@ class DeviceAuthenticationProvider : AuthenticationProvider {
     }
 
     override fun supports(authentication: Class<*>): Boolean {
-        return authentication == DeviceAuthenticationRequest::class.java
+        return authentication == FacebookAuthenticationRequest::class.java
     }
 }

@@ -65,12 +65,12 @@ class UserAuthenticationController {
     }
 
     /**
-     * PASSWORD
+     * MAIL - PASSWORD
      */
-    @PostMapping("/register")
+    @PostMapping("/register/mail")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "register a user")
-    fun register(
+    fun registerMail(
         @Valid
         @RequestBody
         @ApiParam(value = "the request to register a new user", required = true)
@@ -95,10 +95,10 @@ class UserAuthenticationController {
         return AccountVM.fromAccountAndProfile(account, profile)
     }
 
-    @PostMapping("/login/password")
+    @PostMapping("/login/mail")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "login with a password")
-    fun login(
+    fun loginMail(
         @Valid
         @RequestBody
         @ApiParam(value = "the request to login with a password", required = true)
@@ -106,6 +106,27 @@ class UserAuthenticationController {
     ): JwtAuthResponseVM {
         val auth = authenticationService.authenticateByPassword(
             loginWithPasswordRequest.email,
+            loginWithPasswordRequest.password
+        )
+        return JwtAuthResponseVM1.fromJwtAuthResponse(auth)
+    }
+
+
+    /**
+     * Facebook
+     */
+
+    @PostMapping("/login/facebook")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "login with a password")
+    fun loginFacebook(
+        @Valid
+        @RequestBody
+        @ApiParam(value = "the request to login with a password", required = true)
+        loginWithFacebookRequest: LoginWithFacebookRequest
+    ): JwtAuthResponseVM {
+        val auth = authenticationService.authenticateByFacebookToken(
+            loginWithFacebookRequest.,
             loginWithPasswordRequest.password
         )
         return JwtAuthResponseVM1.fromJwtAuthResponse(auth)
