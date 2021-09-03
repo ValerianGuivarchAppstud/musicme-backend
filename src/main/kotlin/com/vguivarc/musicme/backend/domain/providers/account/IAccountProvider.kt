@@ -11,12 +11,13 @@ interface IAccountProvider {
     fun update(account: Account): IAccountResponse
 
     fun findOneById(id: String): IAccountResponse
+    fun findOneByFacebookIdOrNull(id: String): IAccountResponse?
     fun findById(id: String): IAccountResponse?
 
     fun count(): Long
 
-    fun existByDeviceId(deviceId: String): Boolean
-    fun findByDeviceId(deviceId: String): IAccountResponse
+    fun existByFacebookId(facebookId: String): Boolean
+    fun findByFacebookId(facebookId: String): IAccountResponse?
 
     fun findAll(p: Pageable): Page<IAccountResponse>
     fun findAllByEmailContains(email: String, p: Pageable): Page<IAccountResponse>
@@ -28,4 +29,5 @@ interface IAccountProvider {
     fun findOneByEmail(email: String): IAccountResponse
 
     fun findOrCreateAccountByEmail(email: String): IAccountResponse
+    fun findListByFacebookId(facebookId: List<String>): List<IAccountResponse>
 }

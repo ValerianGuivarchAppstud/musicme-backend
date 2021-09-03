@@ -7,16 +7,16 @@ import io.swagger.annotations.ApiModelProperty
 
 @ApiModel(value = "JWT access token", description = "the jwt access token")
 data class JwtAuthResponseVM(
-    @JsonProperty("access_token")
+    @JsonProperty("accessToken")
     @ApiModelProperty(value = "the access token")
     val accessToken: String,
-    @JsonProperty("access_token_expiration")
+    @JsonProperty("accessTokenExpiration")
     @ApiModelProperty(value = "the access token expiration date")
     val accessTokenExpiration: Long,
-    @JsonProperty("refresh_token")
+    @JsonProperty("refreshToken")
     @ApiModelProperty(value = "the refresh token")
     val refreshToken: String? = null,
-    @JsonProperty("refresh_token_expiration")
+    @JsonProperty("refreshTokenExpiration")
     @ApiModelProperty(value = "the refresh token expiration date")
     val refreshTokenExpiration: Long? = null
 ) {

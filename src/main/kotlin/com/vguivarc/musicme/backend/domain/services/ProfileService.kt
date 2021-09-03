@@ -1,5 +1,6 @@
 package com.vguivarc.musicme.backend.domain.services
 
+import com.vguivarc.musicme.backend.domain.models.account.Account
 import com.vguivarc.musicme.backend.domain.models.profile.Profile
 import com.vguivarc.musicme.backend.domain.providers.profile.IProfileProvider
 import com.vguivarc.musicme.backend.libraries.entities.EntityUtils
@@ -28,5 +29,9 @@ class ProfileService {
 
     fun findProfileWithIdAccount(idAccount: String): Profile {
         return profileProvider.findOneByIdAccount(idAccount).toProfile()
+    }
+
+    fun findListByIdAccount(accountList: List<Account>): List<Profile> {
+        return profileProvider.findListByIdAccount(accountList.map { it.id }).map { it.toProfile() }
     }
 }

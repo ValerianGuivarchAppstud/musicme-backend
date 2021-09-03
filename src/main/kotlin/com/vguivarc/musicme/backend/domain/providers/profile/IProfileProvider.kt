@@ -8,5 +8,6 @@ interface IProfileProvider {
     fun update(profile: Profile): IProfileResponse
 
     fun findOneByIdAccount(id: String): IProfileResponse
+    fun findListByIdAccount(idList: List<String>): List<IProfileResponse>
     fun findByIdAccount(id: String): IProfileResponse?
 }

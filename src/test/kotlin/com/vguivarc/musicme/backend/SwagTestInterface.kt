@@ -104,37 +104,11 @@ abstract class SwagTestInterface {
     fun after() {
         this.cleanUp()
     }
-/*
-    fun getUserAccessToken(): JwtAuthResponseVM {
-        val response = this.mvc.perform(
-            MockMvcRequestBuilders.post("/api/v1/user/auth/login/device")
-                .content(
-                    mapper.writeValueAsString(
-                        LoginWithDeviceRequest(
-                            getTestAccountUser().deviceId!!
-                        )
-                    )
-                )
-                .contentType(MediaType.APPLICATION_JSON)
-        )
-            .andDo(MockMvcResultHandlers.print())
-            .andExpect(MockMvcResultMatchers.status().isOk)
-            .andReturn().response.contentAsByteArray
-
-        val json = this.mapper.readTree(response)
-
-        return JwtAuthResponseVM(
-            json.get("access_token").asText(),
-            json.get("access_token_expiration").asLong(),
-            json.get("refresh_token").asText(),
-            json.get("refresh_token_expiration").asLong()
-        )
-    }*/
 
     fun addTestAccountUser(): Account {
         val account = accountProvider.create(
             Account(
-                deviceId = "user@test.com",
+                facebookId = "user@test.com",
                 // email = "user@test.com",
                 phone = "0203040506",
                 status = AccountStatus.ACTIVE
@@ -151,7 +125,7 @@ abstract class SwagTestInterface {
     fun addTestAccountProfessional(): Account {
         val account = accountProvider.create(
             Account(
-                deviceId = "pro@test.com",
+                facebookId = "pro@test.com",
                 email = "pro@test.com",
                 phone = "0606060606",
                 password = "password-pro",

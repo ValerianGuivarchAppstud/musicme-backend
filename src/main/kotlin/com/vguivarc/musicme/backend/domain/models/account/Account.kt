@@ -11,7 +11,7 @@ data class Account(
     val phone: String? = null,
     @Updatable
     var email: String? = null,
-    val deviceId: String? = null,
+    val facebookId: String? = null,
     var password: String? = null,
     val uuid: String? = null,
     @Updatable

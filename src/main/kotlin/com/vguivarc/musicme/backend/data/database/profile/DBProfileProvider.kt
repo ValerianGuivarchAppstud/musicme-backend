@@ -19,7 +19,7 @@ class DBProfileProvider : IProfileProvider {
         return DBProfile(
             id = if (this.id.isBlank()) { null } else { this.id },
             idAccount = idAccount,
-            nickName = nickname
+            username = username
         )
     }
 
@@ -48,6 +48,10 @@ class DBProfileProvider : IProfileProvider {
         return repository.findOneByIdAccount(
             id
         ) ?: throw DomainException(ProviderExceptions.DB_PROFILE_NOT_FOUND)
+    }
+
+    override fun findListByIdAccount(idList: List<String>): List<IProfileResponse> {
+        return idList.mapNotNull { repository.findOneByIdAccount(it) }
     }
 
     override fun findByIdAccount(id: String): IProfileResponse? {

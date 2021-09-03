@@ -1,6 +1,6 @@
 package com.vguivarc.musicme.backend.libraries.jwt
 
-import com.vguivarc.musicme.backend.data.auth.DeviceAuthenticationProvider
+import com.vguivarc.musicme.backend.data.auth.FacebookAuthenticationProvider
 import com.vguivarc.musicme.backend.data.auth.EmailAuthenticationProvider
 import com.vguivarc.musicme.backend.data.auth.PasswordAuthenticationProvider
 import org.springframework.context.annotation.Bean
@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfig(
     private val jwtProperties: JwtProperties,
     private val emailAuthenticationProvider: EmailAuthenticationProvider,
-    private val deviceAuthenticationProvider: DeviceAuthenticationProvider,
+    private val facebookAuthenticationProvider: FacebookAuthenticationProvider,
     private val passwordAuthenticationProvider: PasswordAuthenticationProvider,
     private val authenticationManagerBuilder: AuthenticationManagerBuilder
 ) : WebSecurityConfigurerAdapter() {
@@ -30,7 +30,7 @@ class SecurityConfig(
     override fun authenticationManagerBean(): AuthenticationManager {
         authenticationManagerBuilder
             .authenticationProvider(emailAuthenticationProvider)
-            .authenticationProvider(deviceAuthenticationProvider)
+            .authenticationProvider(facebookAuthenticationProvider)
             .authenticationProvider(passwordAuthenticationProvider)
             .eraseCredentials(false)
         return super.authenticationManagerBean()

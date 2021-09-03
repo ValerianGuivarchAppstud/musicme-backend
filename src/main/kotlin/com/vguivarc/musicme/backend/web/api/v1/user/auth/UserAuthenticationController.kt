@@ -88,11 +88,15 @@ class UserAuthenticationController {
         val profile = profileService.createProfile(
             Profile(
                 idAccount = account.id,
-                nickname = registerWithPasswordRequest.nickname
+                username = registerWithPasswordRequest.nickname
             )
         )
 
         return AccountVM.fromAccountAndProfile(account, profile)
+
+
+
+
     }
 
     @PostMapping("/login/mail")
@@ -126,8 +130,7 @@ class UserAuthenticationController {
         loginWithFacebookRequest: LoginWithFacebookRequest
     ): JwtAuthResponseVM {
         val auth = authenticationService.authenticateByFacebookToken(
-            loginWithFacebookRequest.,
-            loginWithPasswordRequest.password
+            loginWithFacebookRequest.facebookToken
         )
         return JwtAuthResponseVM1.fromJwtAuthResponse(auth)
     }

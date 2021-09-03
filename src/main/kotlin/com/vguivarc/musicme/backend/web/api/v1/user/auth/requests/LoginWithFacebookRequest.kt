@@ -11,9 +11,5 @@ data class LoginWithFacebookRequest(
     @field:NotNull
     @field:NotBlank
     @ApiModelProperty(value = "the facebook token", required = true)
-    val facebookToken: String,
-    @field:NotNull
-    @field:NotBlank
-    @ApiModelProperty(value = "the password", required = true)
-    val password: String
+    val facebookToken: String
 )

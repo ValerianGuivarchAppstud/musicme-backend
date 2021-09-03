@@ -14,13 +14,13 @@ data class DBContact(
     @Id
     var id: String? = null,
 
-    @Field("id_profile")
+    @Field("idProfile")
     var idProfile: String = "",
 
-    @Field("id_profile_of_contact")
+    @Field("idProfileOfContact")
     var idProfileOfContact: String = "",
 
-    @Field("created_date")
+    @Field("createdDate")
     @CreatedDate
     var createdDate: ZonedDateTime = ZonedDateTime.now()
 

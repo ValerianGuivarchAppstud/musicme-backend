@@ -13,27 +13,29 @@ data class DBVerificationCode(
     @Id
     var id: String? = null,
     var code: String,
-    @Field("expiration_date")
+    @Field("expirationDate")
     var expirationDate: ZonedDateTime,
-    @Field("account_id")
+    @Field("accountId")
     var accountId: String,
+    @Field("isUsed")
     var isUsed: Boolean = false,
+    @Field("email")
     var email: String? = null,
 
     @CreatedBy
-    @Field("created_by")
+    @Field("createdBy")
     var createdBy: String? = null,
 
-    @Field("created_date")
+    @Field("createdDate")
     @CreatedDate
     var createdDate: ZonedDateTime = ZonedDateTime.now(),
 
     @LastModifiedBy
-    @Field("last_modified_by")
+    @Field("lastModifiedBy")
     var lastModifiedBy: String? = null,
 
     @LastModifiedDate
-    @Field("last_modified_date")
+    @Field("lastModifiedDate")
     var lastModifiedDate: ZonedDateTime = ZonedDateTime.now(),
 
     @Version

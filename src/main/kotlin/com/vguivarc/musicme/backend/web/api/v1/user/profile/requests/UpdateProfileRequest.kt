@@ -25,6 +25,6 @@ data class UpdateProfileRequest(
     )
 
     fun toProfile() = Profile(
-        nickname = nickName
+        username = nickName
     )
 }

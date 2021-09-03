@@ -1,18 +1,13 @@
 package com.vguivarc.musicme.backend.web.api.v1.contact
 
-import com.vguivarc.musicme.backend.domain.models.favorite.Favorite
 import com.vguivarc.musicme.backend.domain.services.*
+import com.vguivarc.musicme.backend.web.api.v1.contact.entities.ContactFacebookVM
 import com.vguivarc.musicme.backend.web.api.v1.contact.entities.ContactVM
 import com.vguivarc.musicme.backend.web.api.v1.contact.request.UpdateContactStatusRequest
-import com.vguivarc.musicme.backend.web.api.v1.favorite.entities.FavoriteVM
-import com.vguivarc.musicme.backend.web.api.v1.favorite.request.UpdateFavoriteStatusRequest
-import com.vguivarc.musicme.backend.web.api.v1.user.AccountVM
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiParam
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
@@ -51,6 +46,35 @@ class ContactController {
             it,
             profileService.findProfileWithIdAccount(it.idProfileOfContact)
         ) }
+    }
+
+    @GetMapping("/facebook")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "get the user contacts list")
+    fun getContactFacebookList(
+        @RequestParam("social_auth_token")
+        socialAuthToken: String
+    ): List<ContactFacebookVM> {
+
+
+        val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
+
+        val profile = profileService.findProfileWithIdAccount(account.id)
+
+        val contactFacebookIdList = contactService.getFacebookContactsId(socialAuthToken)
+
+        val contactList = contactService.getContacts(profile)
+
+        val accountList = authenticationService.findListByFacebookId(contactFacebookIdList)
+
+        val profileList = profileService.findListByIdAccount(accountList)
+
+        val res = profileList.map { pr -> ContactFacebookVM.fromContact(
+            contactList.filter { pr.id == it.idProfileOfContact }.getOrNull(0),
+            accountList.filter { pr.idAccount == it.id }[0],
+            pr
+        ) }
+        return res
     }
 
     @PostMapping("status")

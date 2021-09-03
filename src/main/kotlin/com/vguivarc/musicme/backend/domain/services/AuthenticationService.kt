@@ -3,11 +3,12 @@ package com.vguivarc.musicme.backend.domain.services
 import com.vguivarc.musicme.backend.domain.models.VerificationCode
 import com.vguivarc.musicme.backend.domain.models.account.Account
 import com.vguivarc.musicme.backend.domain.models.account.AccountAuthentication
-import com.vguivarc.musicme.backend.domain.models.auth.FacebookAuthenticationRequest
 import com.vguivarc.musicme.backend.domain.models.auth.EmailAuthenticationRequest
+import com.vguivarc.musicme.backend.domain.models.auth.FacebookAuthenticationRequest
 import com.vguivarc.musicme.backend.domain.models.auth.JwtAuthResponse
 import com.vguivarc.musicme.backend.domain.models.auth.PasswordAuthenticationRequest
 import com.vguivarc.musicme.backend.domain.models.nested.AccountStatus
+import com.vguivarc.musicme.backend.domain.models.social.FacebookUserModel
 import com.vguivarc.musicme.backend.domain.providers.account.IAccountProvider
 import com.vguivarc.musicme.backend.domain.providers.verificationcode.IVerificationCodeProvider
 import com.vguivarc.musicme.backend.libraries.errors.BaseExceptions
@@ -18,10 +19,14 @@ import com.vguivarc.musicme.backend.utils.sanitizeEmail
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
+import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.server.ResponseStatusException
+
 
 @Service
 class AuthenticationService {
@@ -66,10 +71,32 @@ class AuthenticationService {
 
 // FACEBOOK
 
+
     fun authenticateByFacebookToken(facebookToken: String): JwtAuthResponse {
         val request = FacebookAuthenticationRequest(facebookToken)
         val authentication = authenticationProvider.authenticate(request)
         return generateAuthResponse(authentication)
+        /*
+        val userOptional: Optional<User> = authenticationProvider.findByEmail(facebookUserModel.email)
+        return if (userOptional.isEmpty()) {        //we have no user with given email so register them
+            val user =
+                User(facebookUserModel.email, RandomString(10).nextString(), LoginMethodEnum.FACEBOOK, "ROLE_USER")
+            userRepository.save(user)
+            val userPrincipal = UserPrincipal(user)
+            val jwt: String = tokenProvider.generateToken(userPrincipal)
+            val location: URI = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/api/v1/user/{username}")
+                .buildAndExpand(facebookUserModel.getFirstName()).toUri()
+            ResponseEntity.created(location).body<Any>(LoginResponse(Properties.TOKEN_PREFIX.toString() + jwt))
+        } else { // user exists just login
+            val user: User = userOptional.get()
+            if (user.getLoginMethodEnum() !== LoginMethodEnum.FACEBOOK) { //check if logged in with different logged in method
+                return ResponseEntity.badRequest().body("previously logged in with different login method")
+            }
+            val userPrincipal = UserPrincipal(user)
+            val jwt: String = tokenProvider.generateTokenWithPrinciple(userPrincipal)
+            ResponseEntity.ok<Any>(LoginResponse(Properties.TOKEN_PREFIX.toString() + jwt))
+        }*/
     }
 
 // PASSWORD
@@ -123,6 +150,20 @@ class AuthenticationService {
             throw DomainException(BaseExceptions.UNAUTHORIZED)
         }
         return account
+    }
+
+    fun findListByFacebookId(facebookId: List<String>?) : List<Account>{
+        facebookId?.let { facebookIdList ->
+            val accountId = getConnectedUserId()
+            if ("anonymousUser" == accountId) {
+                throw DomainException(BaseExceptions.UNAUTHORIZED)
+            }
+            val res =  facebookIdList.mapNotNull { accountProvider.findOneByFacebookIdOrNull(it)?.toAccount() }
+            return res
+        } ?:let {
+            throw DomainException(BaseExceptions.RESOURCE_NOT_FOUND)
+        }
+
     }
 
     fun refreshToken(accessTokenString: String, refreshTokenString: String): JwtAuthResponse {

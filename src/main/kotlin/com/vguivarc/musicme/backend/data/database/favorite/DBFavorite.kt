@@ -18,20 +18,20 @@ data class DBFavorite(
     @Id
     var id: String? = null,
 
-    @Field("id_owner")
+    @Field("idOwner")
     var idOwner: String = "",
 
-    @Field("id_song")
+    @Field("idSong")
     var idSong: String = "",
 
     @Updatable
     val title: String = "",
 
-    @Field("artwork_url")
+    @Field("artworkUrl")
     @Updatable
     val artworkUrl: String = "",
 
-    @Field("created_date")
+    @Field("createdDate")
     @CreatedDate
     var createdDate: ZonedDateTime = ZonedDateTime.now()
 

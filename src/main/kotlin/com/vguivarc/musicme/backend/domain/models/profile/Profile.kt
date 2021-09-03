@@ -7,7 +7,7 @@ data class Profile(
     val idAccount: String = "",
 
     @Updatable
-    val nickname: String? = null,
+    val username: String? = null,
 
     @Updatable
     val pictureUrl: String? = null,

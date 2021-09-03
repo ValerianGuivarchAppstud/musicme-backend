@@ -19,9 +19,9 @@ data class DBAccount(
     @Updatable
     var email: String? = null,
 
-    @Field("device_id")
+    @Field("facebookId")
     @Updatable
-    var deviceId: String? = null,
+    var facebookId: String? = null,
 
     @Updatable
     var password: String? = null,
@@ -34,19 +34,19 @@ data class DBAccount(
     var uuid: String = UUID.randomUUID().toString(),
 
     @CreatedBy
-    @Field("created_by")
+    @Field("createdBy")
     var createdBy: String? = null,
 
-    @Field("created_date")
+    @Field("createdDate")
     @CreatedDate
     var createdDate: ZonedDateTime = ZonedDateTime.now(),
 
     @LastModifiedBy
-    @Field("last_modified_by")
+    @Field("lastModifiedBy")
     var lastModifiedBy: String? = null,
 
     @LastModifiedDate
-    @Field("last_modified_date")
+    @Field("lastModifiedDate")
     var lastModifiedDate: ZonedDateTime = ZonedDateTime.now(),
 
     @Version
@@ -59,7 +59,7 @@ data class DBAccount(
             password = password,
             uuid = uuid,
             email = email,
-            deviceId = deviceId,
+            facebookId = facebookId,
             secret = secret,
             status = status,
             createdDate = createdDate

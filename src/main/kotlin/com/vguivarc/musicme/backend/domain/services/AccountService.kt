@@ -37,16 +37,12 @@ class AccountService {
         return accountProvider.findAllWithId(ids, p).map { it.toAccount() }
     }
 
-    fun existsByDeviceId(deviceId: String): Boolean {
-        return accountProvider.existByDeviceId(deviceId)
+    fun existsByFacebookId(facebookId: String): Boolean {
+        return accountProvider.existByFacebookId(facebookId)
     }
 
     fun existByEmail(email: String): Boolean {
         return accountProvider.existByEmail(email)
-    }
-
-    fun findByDeviceId(deviceId: String): Account {
-        return accountProvider.findByDeviceId(deviceId).toAccount()
     }
 
     fun createAccount(account: Account): Account {

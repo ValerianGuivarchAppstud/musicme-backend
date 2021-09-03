@@ -11,5 +11,4 @@ interface IContactProvider {
     fun getContactList(profile: Profile): List<IContactResponse>
 
     fun saveFavoriteStatus(profileId: String, profileContactId: String, isContact: Boolean)
-
 }

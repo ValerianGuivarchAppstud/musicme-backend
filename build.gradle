@@ -19,6 +19,8 @@ buildscript {
         // snippetsDir = file("build/generated-snippets")
     }
     repositories {
+        mavenLocal()
+        maven { url 'http://maven.springframework.org/snapshot' }
         mavenCentral()
     }
     dependencies {
@@ -62,10 +64,13 @@ compileTestKotlin {
 }
 
 repositories {
+    mavenLocal()
+    maven { url 'http://maven.springframework.org/milestone' }
     mavenCentral()
     jcenter()
     maven { url "https://jitpack.io" }
 }
+
 
 // START generate api version properties file
 springBoot {
@@ -151,6 +156,16 @@ gradle.taskGraph.whenReady {
 
 dependencies {
 
+    implementation 'org.projectlombok:lombok:1.18.20'
+    compile('org.springframework.social:spring-social-security:1.1.6.RELEASE')
+    compile('org.springframework.social:spring-social-config:1.1.6.RELEASE')
+    compile('org.springframework.social:spring-social-facebook:2.0.3.RELEASE')
+    compile('org.springframework.social:spring-social-twitter:1.1.2.RELEASE')
+    compile('org.springframework.social:spring-social-linkedin:1.0.2.RELEASE')
+    compile("org.springframework.social:spring-social-github:1.0.0.M4")
+    compile("org.springframework.social:spring-social-google:1.0.0.RELEASE")
+
+
     implementation("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
@@ -183,11 +198,15 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-jackson:${retrofitVersion}")
     implementation("com.squareup.okhttp3:logging-interceptor:${okHttpVersion}")
 
+
+  // implementation("com.facebook.android:facebook-android-sdk:9.0.0")
+
     // apache common libs
     implementation('org.apache.commons:commons-lang3:3.11')
 
     // lorem ipsum for test/mock data
     implementation("com.thedeanda:lorem:2.1")
+
 
     testCompile("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testCompile("org.junit.jupiter:junit-jupiter-params:${junitVersion}")
@@ -215,6 +234,11 @@ dependencies {
     compile("org.javassist:javassist:3.27.0-GA") // workaround for ${javassist.version} placeholder issue*
     testImplementation("org.testcontainers:mongodb:1.15.1")
     compile("com.github.appstud:mongobee:0.14")
+
+    compile 'org.springframework.boot:spring-boot-starter-webflux:2.5.4'
+
+
+
 
 
 }

@@ -28,7 +28,7 @@ class DBAccountProvider : IAccountProvider {
             email = email,
             status = status,
             secret = secret,
-            deviceId = deviceId,
+            facebookId = facebookId,
             password = password
         )
     }
@@ -73,6 +73,12 @@ class DBAccountProvider : IAccountProvider {
         ) ?: throw DomainException(ProviderExceptions.DB_ACCOUNT_NOT_FOUND)
     }
 
+    override fun findOneByFacebookIdOrNull(id: String): DBAccount? {
+        return repository.findOneByFacebookId(
+            id
+        )
+    }
+
     override fun findById(id: String): DBAccount? {
         return repository.findOneById(id)
     }
@@ -97,14 +103,14 @@ class DBAccountProvider : IAccountProvider {
         return repository.findAllByIdIn(ids, p)
     }
 
-    override fun existByDeviceId(deviceId: String): Boolean {
-        return repository.findOneByDeviceId(deviceId) != null
+    override fun existByFacebookId(facebookdId: String): Boolean {
+        return repository.findOneByFacebookId(facebookdId) != null
     }
 
-    override fun findByDeviceId(deviceId: String): DBAccount {
-        return repository.findOneByDeviceId(
-            deviceId
-        ) ?: throw DomainException(ProviderExceptions.DB_ACCOUNT_NOT_FOUND)
+    override fun findByFacebookId(facebookId: String): DBAccount? {
+        return repository.findOneByFacebookId(
+            facebookId
+        )
     }
 
     override fun existByEmail(email: String): Boolean {
@@ -126,5 +132,9 @@ class DBAccountProvider : IAccountProvider {
                 secret = generateSecret()
             )
         return repository.save(account)
+    }
+
+    override fun findListByFacebookId(facebookId: List<String>): List<DBAccount> {
+        return facebookId.mapNotNull { repository.findOneByFacebookId(it) }
     }
 }
