@@ -27,7 +27,7 @@ class EmailAuthenticationProvider : AuthenticationProvider {
         }
         val account = accountProvider.findOneByEmail(email = authentication.principal as String).toAccount()
 
-        verificationProvider.findByAccount(account.id)
+        verificationProvider.findByAccount(account.idAccount)
             .asSequence()
             .map { it.toVerificationCode() }
             .filter { !it.isUsed && it.expirationDate.isAfter(ZonedDateTime.now()) }
@@ -35,7 +35,7 @@ class EmailAuthenticationProvider : AuthenticationProvider {
             .filter { it.code == authentication.credentials }
             .firstOrNull() ?: throw DomainException(BaseExceptions.ACCESS_DENIED)
 
-        verificationProvider.findByAccount(account.id)
+        verificationProvider.findByAccount(account.idAccount)
             .map { it.toVerificationCode() }
             .forEach {
                 verificationProvider.markAsUsed(it.id)

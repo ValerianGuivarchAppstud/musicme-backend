@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-@RequestMapping("/api/v1/contacts")
+@RequestMapping("/api/v1/contact")
 @RestController
 @Api(
     value = "contact",
@@ -24,7 +24,7 @@ class ContactController {
     lateinit var authenticationService: AuthenticationService
 
     @Autowired
-    lateinit var accountService: AccountService
+    lateinit var ringingService: RingingService
 
     @Autowired
     lateinit var profileService: ProfileService
@@ -38,13 +38,15 @@ class ContactController {
     fun getContactList(): List<ContactVM> {
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
-        val profile = profileService.findProfileWithIdAccount(account.id)
+        val profile = profileService.findProfileWithIdAccount(account.idAccount)
 
         val list = contactService.getContacts(profile)
 
         return list.map { ContactVM.fromContact(
             it,
-            profileService.findProfileWithIdAccount(it.idProfileOfContact)
+            profileService.findProfileWithIdProfile(it.idProfileOfContact),
+            ringingService.getNbRingingSent(it),
+            ringingService.getNbRingingReceived(it)
         ) }
     }
 
@@ -52,14 +54,13 @@ class ContactController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "get the user contacts list")
     fun getContactFacebookList(
-        @RequestParam("social_auth_token")
+        @RequestParam("socialAuthToken")
         socialAuthToken: String
     ): List<ContactFacebookVM> {
 
-
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
-        val profile = profileService.findProfileWithIdAccount(account.id)
+        val profile = profileService.findProfileWithIdAccount(account.idAccount)
 
         val contactFacebookIdList = contactService.getFacebookContactsId(socialAuthToken)
 
@@ -70,14 +71,14 @@ class ContactController {
         val profileList = profileService.findListByIdAccount(accountList)
 
         val res = profileList.map { pr -> ContactFacebookVM.fromContact(
-            contactList.filter { pr.id == it.idProfileOfContact }.getOrNull(0),
-            accountList.filter { pr.idAccount == it.id }[0],
+            contactList.filter { pr.idProfile == it.idProfileOfContact }.getOrNull(0),
+            accountList.filter { pr.idAccount == it.idAccount }[0],
             pr
         ) }
         return res
     }
 
-    @PostMapping("status")
+    @PutMapping("/status")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "add or remove a contact")
     fun updateContactStatus(
@@ -88,9 +89,11 @@ class ContactController {
     ) : List<ContactVM>{
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
+        val profile = profileService.findProfileWithIdAccount(account.idAccount)
+
         contactService.saveContactStatus(
-            account.id,
-            updateContactStatusRequest.idContact,
+            profile.idProfile,
+            updateContactStatusRequest.profileContactId,
             updateContactStatusRequest.status
         )
 

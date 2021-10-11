@@ -8,9 +8,9 @@ import lombok.Data
 @Data
 class FacebookUserModel {
     val id: String? = null
-    @JsonProperty("first_name")
+    @JsonProperty("firstName")
     val firstName: String? = null
-    @JsonProperty("last_name")
+    @JsonProperty("lastName")
     val lastName: String? = null
     val email: String? = null
 

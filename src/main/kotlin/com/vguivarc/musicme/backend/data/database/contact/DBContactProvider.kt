@@ -6,8 +6,6 @@ import com.vguivarc.musicme.backend.domain.providers.contact.responses.IContactR
 import com.vguivarc.musicme.backend.libraries.errors.DomainException
 import com.vguivarc.musicme.backend.libraries.errors.ProviderExceptions
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 
@@ -17,7 +15,8 @@ class DBContactProvider : IContactProvider {
     @Autowired
     lateinit var repository: DBContactRepository
     override fun getContactList(profile: Profile): List<IContactResponse> {
-        return repository.findAllByIdProfileContains(profile.id)
+        val list = repository.findAllByIdProfile(profile.idProfile)
+        return list
     }
 
     override fun saveFavoriteStatus(profileId: String, profileContactId: String, isContact: Boolean) {

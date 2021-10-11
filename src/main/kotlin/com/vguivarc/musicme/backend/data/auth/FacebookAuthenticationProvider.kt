@@ -46,7 +46,7 @@ class FacebookAuthenticationProvider : AuthenticationProvider {
         val account = accountProvider.findByFacebookId(facebookId = facebookUserModel.id?:"error")//.toAccount()
         return if(account==null){
             val newAccount = accountProvider.create(facebookUserModel.toAccount()).toAccount()
-            profileProvider.create(facebookUserModel.toProfile(newAccount.id)).toProfile()
+            profileProvider.create(facebookUserModel.toProfile(newAccount.idAccount)).toProfile()
             return AccountAuthentication(newAccount)
         } else {
             AccountAuthentication(account.toAccount())

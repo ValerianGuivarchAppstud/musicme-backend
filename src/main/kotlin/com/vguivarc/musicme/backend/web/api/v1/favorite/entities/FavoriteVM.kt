@@ -15,7 +15,7 @@ data class FavoriteVM(
     @ApiModelProperty(value = "the title of the song")
     val title: String? = null,
     @JsonProperty("pictureUrl")
-    @ApiModelProperty(value = "the artworkUrl of the song")
+    @ApiModelProperty(value = "the pictureUrl of the song")
     val pictureUrl: String? = null,
     @JsonProperty("createdAt")
     @ApiModelProperty(value = "the date the favorite has been added")
@@ -25,7 +25,7 @@ data class FavoriteVM(
         fun fromFavorite(favorite: Favorite) = FavoriteVM(
             id = favorite.song.id,
             title = favorite.song.title,
-            pictureUrl = favorite.song.artworkUrl,
+            pictureUrl = favorite.song.pictureUrl,
             createdAt = favorite.createdDate
         )
     }

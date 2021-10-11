@@ -23,8 +23,8 @@ class ProfileService {
         ).toProfile()
     }
 
-    fun getProfile(idAccount: String): Profile? {
-        return profileProvider.findByIdAccount(idAccount)?.toProfile()
+    fun findProfileWithIdProfile(idProfile: String): Profile {
+        return profileProvider.findOneByIdProfile(idProfile).toProfile()
     }
 
     fun findProfileWithIdAccount(idAccount: String): Profile {
@@ -32,6 +32,6 @@ class ProfileService {
     }
 
     fun findListByIdAccount(accountList: List<Account>): List<Profile> {
-        return profileProvider.findListByIdAccount(accountList.map { it.id }).map { it.toProfile() }
+        return profileProvider.findListByIdAccount(accountList.map { it.idAccount }).map { it.toProfile() }
     }
 }

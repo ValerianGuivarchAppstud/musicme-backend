@@ -10,8 +10,4 @@ interface DBAccountRepository : MongoRepository<DBAccount, String> {
     fun findOneByEmail(email: String): DBAccount?
     fun findOneByFacebookId(facebookId: String): DBAccount?
     fun findOneById(id: String): DBAccount?
-
-    fun findAllByEmailContains(email: String, p: Pageable): Page<IAccountResponse>
-    fun findAllByIdIn(ids: List<String>, p: Pageable): Page<IAccountResponse>
-    fun findAllByStatusContains(status: String, p: Pageable): Page<IAccountResponse>
 }

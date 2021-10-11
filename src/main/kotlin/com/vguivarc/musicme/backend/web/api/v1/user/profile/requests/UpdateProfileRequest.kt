@@ -18,13 +18,13 @@ data class UpdateProfileRequest(
     @field:NotNull
     @field:NotBlank
     @ApiModelProperty(value = "the new first name", allowEmptyValue = true)
-    val nickName: String?
+    val username: String?
 ) {
     fun toAccount() = Account(
         email = email
     )
 
     fun toProfile() = Profile(
-        username = nickName
+        username = username
     )
 }

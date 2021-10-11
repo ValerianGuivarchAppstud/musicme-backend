@@ -7,8 +7,6 @@ import com.vguivarc.musicme.backend.domain.providers.favorite.responses.IFavorit
 import com.vguivarc.musicme.backend.libraries.errors.DomainException
 import com.vguivarc.musicme.backend.libraries.errors.ProviderExceptions
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
@@ -19,7 +17,7 @@ class DBFavoriteProvider : IFavoriteProvider {
 
     override fun getFavoriteList(profile: Profile): List<IFavoriteResponse> {
         return repository.findAllByIdOwnerContains(
-            profile.id
+            profile.idProfile
         )
     }
 
@@ -30,10 +28,10 @@ class DBFavoriteProvider : IFavoriteProvider {
                 throw DomainException(ProviderExceptions.DB_FAVORITE_ALREADY_EXISTS)
             } ?:let{
                 repository.save(DBFavorite(
-                    idOwner = profile.id,
+                    idOwner = profile.idProfile,
                     idSong = song.id,
                     title = song.title,
-                    artworkUrl = song.artworkUrl
+                    pictureUrl = song.pictureUrl
                 ))
             }
         } else {

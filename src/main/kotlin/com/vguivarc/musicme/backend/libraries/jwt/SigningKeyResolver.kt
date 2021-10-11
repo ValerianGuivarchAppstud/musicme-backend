@@ -14,7 +14,7 @@ class SigningKeyResolver(
     override fun resolveSigningKey(header: JwsHeader<out JwsHeader<*>>?, claims: Claims?): Key {
         if (claims == null) throw UnsupportedJwtException("Empty claims")
         val id = claims["sub"] ?: throw UnsupportedJwtException("Empty claims subject")
-        val account = accountProvider.findById(id as String)?.toAccount() ?: throw JwtException("Account not found")
+        val account = accountProvider.findByIdAccount(id as String)?.toAccount() ?: throw JwtException("Account not found")
         return Keys.hmacShaKeyFor(
             "${jwtProperties.secretKey}${account.secret}".toByteArray(StandardCharsets.UTF_8)
         )

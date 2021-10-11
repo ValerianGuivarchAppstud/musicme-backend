@@ -12,8 +12,8 @@ import javax.validation.constraints.NotNull
 data class RegisterWithPasswordRequest(
     @field:NotNull
     @field:NotBlank
-    @ApiModelProperty(value = "the nickname", required = true)
-    val nickname: String,
+    @ApiModelProperty(value = "the username", required = true)
+    val username: String,
     @field:Email
     @field:NotNull
     @field:NotBlank

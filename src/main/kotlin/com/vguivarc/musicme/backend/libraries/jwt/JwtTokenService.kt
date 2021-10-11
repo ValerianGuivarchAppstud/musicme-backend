@@ -134,7 +134,7 @@ class JwtTokenService(val jwtProperties: JwtProperties) : TokenService {
         try {
             jwtToken = this.unpackToken(key)
             val id = jwtToken.getSubject()
-            val account = accountProvider.findById(id)?.toAccount() ?: throw JwtException("Account not found")
+            val account = accountProvider.findByIdAccount(id)?.toAccount() ?: throw JwtException("Account not found")
             Jwts.parserBuilder()
                 .setSigningKey(createKey(account.secret ?: ""))
                 .build()

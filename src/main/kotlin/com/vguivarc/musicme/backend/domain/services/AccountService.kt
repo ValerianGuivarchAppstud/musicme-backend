@@ -17,26 +17,6 @@ class AccountService {
     @Autowired
     lateinit var accountProvider: IAccountProvider
 
-    fun findById(id: String): Account {
-        return accountProvider.findOneById(id).toAccount()
-    }
-
-    fun findAll(p: Pageable): Page<Account> {
-        return accountProvider.findAll(p).map { it.toAccount() }
-    }
-
-    fun findAllByEmailContains(email: String, p: Pageable): Page<Account> {
-        return accountProvider.findAllByEmailContains(email, p).map { it.toAccount() }
-    }
-
-    fun findAllByStatusContains(status: String, p: Pageable): Page<Account> {
-        return accountProvider.findAllByStatusContains(status, p).map { it.toAccount() }
-    }
-
-    fun findAllWithId(ids: List<String>, p: Pageable): Page<Account> {
-        return accountProvider.findAllWithId(ids, p).map { it.toAccount() }
-    }
-
     fun existsByFacebookId(facebookId: String): Boolean {
         return accountProvider.existByFacebookId(facebookId)
     }

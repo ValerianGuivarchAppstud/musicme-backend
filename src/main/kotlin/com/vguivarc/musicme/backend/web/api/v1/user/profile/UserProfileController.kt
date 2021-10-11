@@ -36,7 +36,7 @@ class UserProfileController {
     fun getAccount(): AccountVM {
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
-        val profile = profileService.findProfileWithIdAccount(account.id)
+        val profile = profileService.findProfileWithIdAccount(account.idAccount)
 
         return AccountVM.fromAccountAndProfile(account, profile)
     }
@@ -52,7 +52,7 @@ class UserProfileController {
     ): AccountVM {
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
-        val profile = profileService.findProfileWithIdAccount(account.id)
+        val profile = profileService.findProfileWithIdAccount(account.idAccount)
 
         return AccountVM.fromAccountAndProfile(
             accountService.updateAccount(account, updateProfileRequest.toAccount()),

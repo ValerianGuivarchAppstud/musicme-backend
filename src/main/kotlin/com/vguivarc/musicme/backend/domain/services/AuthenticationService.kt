@@ -8,7 +8,6 @@ import com.vguivarc.musicme.backend.domain.models.auth.FacebookAuthenticationReq
 import com.vguivarc.musicme.backend.domain.models.auth.JwtAuthResponse
 import com.vguivarc.musicme.backend.domain.models.auth.PasswordAuthenticationRequest
 import com.vguivarc.musicme.backend.domain.models.nested.AccountStatus
-import com.vguivarc.musicme.backend.domain.models.social.FacebookUserModel
 import com.vguivarc.musicme.backend.domain.providers.account.IAccountProvider
 import com.vguivarc.musicme.backend.domain.providers.verificationcode.IVerificationCodeProvider
 import com.vguivarc.musicme.backend.libraries.errors.BaseExceptions
@@ -19,13 +18,10 @@ import com.vguivarc.musicme.backend.utils.sanitizeEmail
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
-import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.server.ResponseStatusException
 
 
 @Service
@@ -127,13 +123,13 @@ class AuthenticationService {
     fun generateTokenByMail(mail: String): VerificationCode {
         val email = mail.sanitizeEmail()
         val account = accountProvider.findOneByEmail(email).toAccount()
-        return verificationCodeProvider.addVerificationCode(account.id).toVerificationCode()
+        return verificationCodeProvider.addVerificationCode(account.idAccount).toVerificationCode()
     }
 
 // Authenticated
     fun findConnectedAccount(): Account {
         val accountId = getConnectedUserId()
-        return accountProvider.findOneById(accountId).toAccount()
+        return accountProvider.findOneByIdAccount(accountId).toAccount()
     }
 
     /**
@@ -145,7 +141,7 @@ class AuthenticationService {
         if ("anonymousUser" == accountId) {
             throw DomainException(BaseExceptions.UNAUTHORIZED)
         }
-        val account = accountProvider.findOneById(accountId).toAccount()
+        val account = accountProvider.findOneByIdAccount(accountId).toAccount()
         if (account.status != AccountStatus.NEW && account.status != AccountStatus.ACTIVE) {
             throw DomainException(BaseExceptions.UNAUTHORIZED)
         }
@@ -177,7 +173,7 @@ class AuthenticationService {
             throw DomainException(BaseExceptions.ACCESS_DENIED)
         }
         val auth = jwtTokenService.getAuthentication(refreshToken)
-        val account = accountProvider.findOneById(auth.principal.toString()).toAccount()
+        val account = accountProvider.findOneByIdAccount(auth.principal.toString()).toAccount()
         return generateAuthResponse(AccountAuthentication(account))
     }
 }

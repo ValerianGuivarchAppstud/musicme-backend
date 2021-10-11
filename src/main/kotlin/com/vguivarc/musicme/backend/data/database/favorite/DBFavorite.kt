@@ -1,10 +1,8 @@
 package com.vguivarc.musicme.backend.data.database.favorite
 
 import com.vguivarc.musicme.backend.domain.models.favorite.Favorite
-import com.vguivarc.musicme.backend.domain.models.profile.Profile
 import com.vguivarc.musicme.backend.domain.models.song.Song
 import com.vguivarc.musicme.backend.domain.providers.favorite.responses.IFavoriteResponse
-import com.vguivarc.musicme.backend.domain.providers.profile.responses.IProfileResponse
 import com.vguivarc.musicme.backend.libraries.entities.Updatable
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
@@ -27,9 +25,9 @@ data class DBFavorite(
     @Updatable
     val title: String = "",
 
-    @Field("artworkUrl")
+    @Field("pictureUrl")
     @Updatable
-    val artworkUrl: String = "",
+    val pictureUrl: String = "",
 
     @Field("createdDate")
     @CreatedDate
@@ -41,7 +39,7 @@ data class DBFavorite(
         return Favorite(
             createdDate = createdDate,
             idOwner = idOwner,
-            song = Song(idSong, title, artworkUrl)
+            song = Song(idSong, title, pictureUrl)
         )
     }
 }

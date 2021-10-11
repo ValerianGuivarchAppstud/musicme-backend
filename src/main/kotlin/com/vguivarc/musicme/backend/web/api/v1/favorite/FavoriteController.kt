@@ -40,7 +40,7 @@ class FavoriteController {
     fun getFavoriteList(): List<FavoriteVM> {
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
-        val profile = profileService.findProfileWithIdAccount(account.id)
+        val profile = profileService.findProfileWithIdAccount(account.idAccount)
 
         val list = favoriteService.getFavorites(profile)
 
@@ -58,7 +58,7 @@ class FavoriteController {
     ) : List<FavoriteVM>{
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
-        val profile = profileService.findProfileWithIdAccount(account.id)
+        val profile = profileService.findProfileWithIdAccount(account.idAccount)
 
         favoriteService.saveFavoriteStatus(profile, updateFavoriteStatusRequest.song, updateFavoriteStatusRequest.status)
 

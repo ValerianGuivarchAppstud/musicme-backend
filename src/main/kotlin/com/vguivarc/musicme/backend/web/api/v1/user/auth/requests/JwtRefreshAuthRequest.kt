@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiModelProperty
 
 @ApiModel(description = "the jwt refresh token request")
 data class JwtRefreshAuthRequest(
-    @JsonProperty("access_token")
+    @JsonProperty("accessToken")
     @ApiModelProperty(value = "the access token", required = true)
     val accessToken: String,
-    @JsonProperty("refresh_token")
+    @JsonProperty("refreshToken")
     @ApiModelProperty(value = "the refresh token", required = true)
     val refreshToken: String
 )

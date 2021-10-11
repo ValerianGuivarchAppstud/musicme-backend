@@ -87,8 +87,8 @@ class UserAuthenticationController {
 
         val profile = profileService.createProfile(
             Profile(
-                idAccount = account.id,
-                username = registerWithPasswordRequest.nickname
+                idAccount = account.idAccount,
+                username = registerWithPasswordRequest.username
             )
         )
 

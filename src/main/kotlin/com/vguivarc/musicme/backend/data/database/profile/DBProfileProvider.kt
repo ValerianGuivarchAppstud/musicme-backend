@@ -17,7 +17,7 @@ class DBProfileProvider : IProfileProvider {
 
     fun Profile.toDBProfile(): DBProfile {
         return DBProfile(
-            id = if (this.id.isBlank()) { null } else { this.id },
+            id = if (this.idProfile.isBlank()) { null } else { this.idProfile },
             idAccount = idAccount,
             username = username
         )
@@ -38,15 +38,21 @@ class DBProfileProvider : IProfileProvider {
 
     override fun update(profile: Profile): IProfileResponse {
         val baseProfile = repository.findOneById(
-            profile.id
+            profile.idProfile
         ) ?: throw DomainException(ProviderExceptions.DB_PROFILE_NOT_FOUND)
 
         return repository.save(EntityUtils.update(baseProfile, profile.toDBProfile()))
     }
 
-    override fun findOneByIdAccount(id: String): IProfileResponse {
+    override fun findOneByIdAccount(idAccount: String): IProfileResponse {
         return repository.findOneByIdAccount(
-            id
+            idAccount
+        ) ?: throw DomainException(ProviderExceptions.DB_PROFILE_NOT_FOUND)
+    }
+
+    override fun findOneByIdProfile(idProfile: String): IProfileResponse {
+        return repository.findOneById(
+            idProfile
         ) ?: throw DomainException(ProviderExceptions.DB_PROFILE_NOT_FOUND)
     }
 

@@ -33,7 +33,7 @@ data class AccountVM(
 ) {
     companion object {
         fun fromAccountAndProfile(account: Account, profile: Profile) = AccountVM(
-            profileId = profile.id,
+            profileId = profile.idProfile,
             email = account.email,
             facebookId = account.facebookId,
             uuid = account.uuid ?: "",

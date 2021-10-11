@@ -27,6 +27,8 @@ enum class ProviderExceptions(
         ("Contact already exists", HttpStatus.BAD_REQUEST),
     DB_CONTACT_NOT_FOUND
         ("Contact not found in our database", HttpStatus.NOT_FOUND),
+    DB_RINGING_NOT_FOUND
+        ("Ringing not found in our database", HttpStatus.NOT_FOUND),
     ;
 
     override val statusCode: HttpStatus

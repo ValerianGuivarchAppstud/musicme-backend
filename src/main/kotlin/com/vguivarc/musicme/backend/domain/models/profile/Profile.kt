@@ -1,9 +1,11 @@
 package com.vguivarc.musicme.backend.domain.models.profile
 
 import com.vguivarc.musicme.backend.libraries.entities.Updatable
+import java.time.ZonedDateTime
 
 data class Profile(
-    val id: String = "",
+    val idProfile: String = "",
+
     val idAccount: String = "",
 
     @Updatable
@@ -11,6 +13,9 @@ data class Profile(
 
     @Updatable
     val pictureUrl: String? = null,
+
+    @Updatable
+    val dateLastSeen: ZonedDateTime? = ZonedDateTime.now(),
 
     val contactsId: MutableList<String> = mutableListOf()
 )

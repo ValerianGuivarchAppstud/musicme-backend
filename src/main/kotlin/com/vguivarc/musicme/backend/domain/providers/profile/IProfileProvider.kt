@@ -7,7 +7,8 @@ interface IProfileProvider {
     fun create(toCreate: Profile): IProfileResponse
     fun update(profile: Profile): IProfileResponse
 
-    fun findOneByIdAccount(id: String): IProfileResponse
+    fun findOneByIdAccount(idAccount: String): IProfileResponse
+    fun findOneByIdProfile(idProfile: String): IProfileResponse
     fun findListByIdAccount(idList: List<String>): List<IProfileResponse>
     fun findByIdAccount(id: String): IProfileResponse?
 }

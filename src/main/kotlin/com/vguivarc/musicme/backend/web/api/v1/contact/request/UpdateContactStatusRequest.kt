@@ -17,7 +17,7 @@ data class UpdateContactStatusRequest(
     @field:NotNull
     @field:NotBlank
     @ApiModelProperty(value = "the id contact", allowEmptyValue = true)
-    val idContact: String,
+    val profileContactId: String,
     @field:NotNull
     @ApiModelProperty(value = "the contact status", allowEmptyValue = true)
     val status: Boolean

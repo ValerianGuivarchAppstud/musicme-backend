@@ -17,6 +17,6 @@ data class Song(
     val title: String = "",
     @field:NotNull
     @field:NotBlank
-    @ApiModelProperty(value = "the song artwork", allowEmptyValue = true)
-    val artworkUrl: String = ""
+    @ApiModelProperty(value = "the song picture url", allowEmptyValue = true)
+    val pictureUrl: String = ""
 )

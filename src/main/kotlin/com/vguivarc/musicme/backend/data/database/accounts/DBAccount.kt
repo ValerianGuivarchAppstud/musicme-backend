@@ -17,6 +17,7 @@ data class DBAccount(
     var id: String? = null,
 
     @Updatable
+    @Field("email")
     var email: String? = null,
 
     @Field("facebookId")
@@ -24,13 +25,17 @@ data class DBAccount(
     var facebookId: String? = null,
 
     @Updatable
+    @Field("password")
     var password: String? = null,
 
     @Updatable
+    @Field("status")
     var status: AccountStatus = AccountStatus.NEW,
 
+    @Field("secret")
     var secret: String? = null,
 
+    @Field("uuid")
     var uuid: String = UUID.randomUUID().toString(),
 
     @CreatedBy
@@ -50,12 +55,13 @@ data class DBAccount(
     var lastModifiedDate: ZonedDateTime = ZonedDateTime.now(),
 
     @Version
+    @Field("version")
     var version: Long? = null
 ) : IAccountResponse {
 
     override fun toAccount(): Account {
         return Account(
-            id = id ?: "",
+            idAccount = id ?: "",
             password = password,
             uuid = uuid,
             email = email,

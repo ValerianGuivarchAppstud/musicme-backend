@@ -11,3 +11,7 @@ interface DBFavoriteRepository : MongoRepository<DBFavorite, String> {
     fun findOneByIdSong(idSong: String): DBFavorite?
 
 }
+
+
+
+

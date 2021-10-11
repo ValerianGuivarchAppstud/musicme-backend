@@ -7,7 +7,8 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface DBRingingRepository : MongoRepository<DBRinging, String> {
 
-//    fun findAllByIdOwnerContains(idOwner: String, p: Pageable): Page<IRingingResponse>
-//    fun findOneByIdSong(idSong: String): DBRinging?
+    fun findAllBySenderIdAndReceiverId(senderId: String, receiverId: String): List<IRingingResponse>
+    fun findAllByReceiverId(senderId: String): List<IRingingResponse>
+    fun findOneById(ringingId: String): DBRinging?
 
 }

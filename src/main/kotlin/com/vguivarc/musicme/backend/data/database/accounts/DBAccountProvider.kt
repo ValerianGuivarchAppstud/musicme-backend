@@ -24,7 +24,7 @@ class DBAccountProvider : IAccountProvider {
 
     fun Account.toDBAccount(): DBAccount {
         return DBAccount(
-            id = if (this.id.isBlank()) { null } else { this.id },
+            id = this.idAccount.ifBlank { null },
             email = email,
             status = status,
             secret = secret,
@@ -57,7 +57,7 @@ class DBAccountProvider : IAccountProvider {
 
     override fun update(account: Account): IAccountResponse {
         val baseAccount = repository.findOneById(
-            account.id
+            account.idAccount
         ) ?: throw DomainException(ProviderExceptions.DB_ACCOUNT_NOT_FOUND)
 
         if (!account.password.isNullOrBlank() && baseAccount.password != account.password) {
@@ -67,20 +67,20 @@ class DBAccountProvider : IAccountProvider {
         return repository.save(EntityUtils.update(baseAccount, account.toDBAccount()))
     }
 
-    override fun findOneById(id: String): DBAccount {
+    override fun findOneByIdAccount(idAccount: String): DBAccount {
         return repository.findOneById(
-            id
+            idAccount
         ) ?: throw DomainException(ProviderExceptions.DB_ACCOUNT_NOT_FOUND)
     }
 
-    override fun findOneByFacebookIdOrNull(id: String): DBAccount? {
+    override fun findOneByFacebookIdOrNull(idFacebook: String): DBAccount? {
         return repository.findOneByFacebookId(
-            id
+            idFacebook
         )
     }
 
-    override fun findById(id: String): DBAccount? {
-        return repository.findOneById(id)
+    override fun findByIdAccount(idAccount: String): DBAccount? {
+        return repository.findOneById(idAccount)
     }
 
     override fun count(): Long {
@@ -91,20 +91,8 @@ class DBAccountProvider : IAccountProvider {
         return repository.findAll(p).map { it }
     }
 
-    override fun findAllByEmailContains(email: String, p: Pageable): Page<IAccountResponse> {
-        return repository.findAllByEmailContains(email, p)
-    }
-
-    override fun findAllByStatusContains(status: String, p: Pageable): Page<IAccountResponse> {
-        return repository.findAllByStatusContains(status, p)
-    }
-
-    override fun findAllWithId(ids: List<String>, p: Pageable): Page<IAccountResponse> {
-        return repository.findAllByIdIn(ids, p)
-    }
-
-    override fun existByFacebookId(facebookdId: String): Boolean {
-        return repository.findOneByFacebookId(facebookdId) != null
+    override fun existByFacebookId(facebookId: String): Boolean {
+        return repository.findOneByFacebookId(facebookId) != null
     }
 
     override fun findByFacebookId(facebookId: String): DBAccount? {

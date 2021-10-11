@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface DBContactRepository : MongoRepository<DBContact, String> {
 
-    fun findAllByIdProfileContains(idProfile: String): List<IContactResponse>
+    fun findAllByIdProfile(idProfile: String): List<IContactResponse>
     fun findOneByIdProfile(idProfile: String, idProfileOfContact: String): DBContact?
 
 }

@@ -5,7 +5,7 @@ import com.vguivarc.musicme.backend.libraries.entities.Updatable
 import java.time.ZonedDateTime
 
 data class Account(
-    val id: String = "",
+    val idAccount: String = "",
     val createdDate: ZonedDateTime = ZonedDateTime.now(),
     @Updatable
     val phone: String? = null,

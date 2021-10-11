@@ -10,32 +10,32 @@ import java.time.ZonedDateTime
 
 @ApiModel(value = "JWT access token", description = "the jwt access token")
 data class ContactFacebookVM(
-    @JsonProperty("id")
+    @JsonProperty("idProfile")
     @ApiModelProperty(value = "the id of the contact")
-    val id: String? = null,
+    val idProfile: String? = null,
     @JsonProperty("idFacebook")
     @ApiModelProperty(value = "the facebook id of the contact")
     val idFacebook: String? = null,
-    @JsonProperty("name")
+    @JsonProperty("username")
     @ApiModelProperty(value = "the name of the contact")
-    val name: String? = null,
+    val username: String? = null,
     @JsonProperty("picture")
     @ApiModelProperty(value = "the picture of the contact")
     val picture: String? = null,
-    @JsonProperty("isContact")
+    @JsonProperty("contact")
     @ApiModelProperty(value = "is a contact?")
-    val isContact: Boolean? = null,
+    val contact: Boolean? = null,
     @JsonProperty("createdAt")
     @ApiModelProperty(value = "the date the contact has been added")
     val createdAt: ZonedDateTime? = null
 ) {
     companion object {
         fun fromContact(contact: Contact?, account: Account, profile: Profile) = ContactFacebookVM(
-            id = profile.id,
+            idProfile = profile.idProfile,
             idFacebook = account.facebookId,
-            name = profile.username,
+            username = profile.username,
             picture = profile.pictureUrl,
-            isContact = (contact!=null),
+            contact = (contact!=null),
             createdAt = contact?.createdDate
         )
     }

@@ -1,11 +1,9 @@
-package com.vguivarc.musicme.backend.web.api.v1.favorite
+package com.vguivarc.musicme.backend.web.api.v1.ringing
 
-import com.vguivarc.musicme.backend.domain.services.AccountService
-import com.vguivarc.musicme.backend.domain.services.AuthenticationService
-import com.vguivarc.musicme.backend.domain.services.FavoriteService
-import com.vguivarc.musicme.backend.domain.services.ProfileService
-import com.vguivarc.musicme.backend.web.api.v1.favorite.entities.FavoriteVM
-import com.vguivarc.musicme.backend.web.api.v1.favorite.request.UpdateFavoriteStatusRequest
+import com.vguivarc.musicme.backend.domain.services.*
+import com.vguivarc.musicme.backend.web.api.v1.ringing.entities.NextRingingResponseVM
+import com.vguivarc.musicme.backend.web.api.v1.ringing.entities.RingingVM
+import com.vguivarc.musicme.backend.web.api.v1.ringing.request.SendRingingRequest
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiParam
@@ -14,13 +12,13 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-@RequestMapping("/api/v1/favorites")
+@RequestMapping("/api/v1/ringing")
 @RestController
 @Api(
     value = "favorite",
     description = "handle the favorite requests"
 )
-class FavoriteController {
+class RingingController {
 
     @Autowired
     lateinit var authenticationService: AuthenticationService
@@ -32,36 +30,92 @@ class FavoriteController {
     lateinit var profileService: ProfileService
 
     @Autowired
-    lateinit var favoriteService: FavoriteService
+    lateinit var ringingService: RingingService
 
-    @GetMapping("/list")
+    @GetMapping("/next")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "get the user favorites list")
-    fun getFavoriteList(): List<FavoriteVM> {
+    @ApiOperation(value = "get the next ringing")
+    fun getNextRinging(): NextRingingResponseVM {
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
-        val profile = profileService.findProfileWithIdAccount(account.id)
+        val profileOwner = profileService.findProfileWithIdAccount(account.idAccount)
 
-        val list = favoriteService.getFavorites(profile)
+        val ringing = ringingService.getNextRinging(profileOwner.idProfile)
 
-        return list.map { FavoriteVM.fromFavorite(it) }
+        val ringingVM = ringing?.let {
+            val profileSender = profileService.findProfileWithIdProfile(it.senderId)
+            val profileReceiver = profileService.findProfileWithIdProfile(it.senderId)
+            RingingVM.fromRinging(ringing, profileSender, profileReceiver)
+        }
+        return NextRingingResponseVM(nextRinging = ringingVM)
     }
 
-    @PostMapping("status")
+    @GetMapping("/list/waiting")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "add or remove a favorite song")
-    fun updateFavoriteStatus(
-        @Valid
-        @RequestBody
-        @ApiParam(value = "the request to add or remove a favorite song", required = true)
-        updateFavoriteStatusRequest: UpdateFavoriteStatusRequest
-    ) : List<FavoriteVM>{
+    @ApiOperation(value = "get the ringing list")
+    fun getWaitingRingingList(): List<RingingVM> {
         val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
 
-        val profile = profileService.findProfileWithIdAccount(account.id)
+        val profileOwner = profileService.findProfileWithIdAccount(account.idAccount)
 
-        favoriteService.saveFavoriteStatus(profile, updateFavoriteStatusRequest.song, updateFavoriteStatusRequest.status)
+        val ringingList = ringingService.getWaitingRingingList(profileOwner.idProfile)
 
-        return getFavoriteList()
+        return ringingList.map {
+
+            val profileSender = profileService.findProfileWithIdProfile(it.senderId)
+            val profileReceiver = profileService.findProfileWithIdProfile(it.senderId)
+            RingingVM.fromRinging(it, profileSender, profileReceiver)
+        }
+    }
+
+    @GetMapping("/list/listened")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "get the ringing list")
+    fun getListRingingListened(): List<RingingVM> {
+        val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
+
+        val profileOwner = profileService.findProfileWithIdAccount(account.idAccount)
+
+        val ringingList = ringingService.getListRingingListened(profileOwner.idProfile)
+
+        return ringingList.map {
+
+            val profileSender = profileService.findProfileWithIdProfile(it.senderId)
+            val profileReceiver = profileService.findProfileWithIdProfile(it.senderId)
+            RingingVM.fromRinging(it, profileSender, profileReceiver)
+        }
+    }
+
+    @PutMapping("/listen")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "put the ringing as listened")
+    fun listenRinging(
+        @Valid
+        @RequestBody
+        @ApiParam(value = "the listened ringing", required = true)
+        ringingId: String
+    ) {
+        authenticationService.findConnectedAccountOrThrowAccessDenied()
+        ringingService.listenRinging(ringingId)
+    }
+
+    @PostMapping("/send")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "put the ringing as listened")
+    fun sendRinging(
+        @Valid
+        @RequestBody
+        @ApiParam(value = "the listened ringing", required = true)
+        sendRingingRequest: SendRingingRequest
+    ) : RingingVM{
+        val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
+
+        val profileSender = profileService.findProfileWithIdAccount(account.idAccount)
+
+        val profileReceiver = profileService.findProfileWithIdProfile(sendRingingRequest.idProfileOfContact)
+
+        val ringing = ringingService.sendRinging(profileSender.idProfile, sendRingingRequest.idProfileOfContact, sendRingingRequest.song)
+
+        return RingingVM.fromRinging(ringing, profileSender, profileReceiver)
     }
 }

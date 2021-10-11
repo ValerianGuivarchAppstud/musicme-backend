@@ -1,6 +1,7 @@
-package com.vguivarc.musicme.backend.web.api.v1.favorite.request
+package com.vguivarc.musicme.backend.web.api.v1.ringing.request
 
 import com.vguivarc.musicme.backend.domain.models.account.Account
+import com.vguivarc.musicme.backend.domain.models.contact.Contact
 import com.vguivarc.musicme.backend.domain.models.favorite.Favorite
 import com.vguivarc.musicme.backend.domain.models.profile.Profile
 import com.vguivarc.musicme.backend.domain.models.song.Song
@@ -12,11 +13,11 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @ApiModel(description = "the request to update the user profile")
-data class UpdateFavoriteStatusRequest(
+data class SendRingingRequest(
     @field:NotNull
     @ApiModelProperty(value = "the song", allowEmptyValue = true)
     val song: Song,
     @field:NotNull
-    @ApiModelProperty(value = "the favorite status", allowEmptyValue = true)
-    val status: Boolean
+    @ApiModelProperty(value = "the contact", allowEmptyValue = true)
+    val idProfileOfContact: String
 )

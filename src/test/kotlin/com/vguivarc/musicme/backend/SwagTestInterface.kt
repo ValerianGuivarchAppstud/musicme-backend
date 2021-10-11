@@ -11,7 +11,6 @@ import com.vguivarc.musicme.backend.domain.models.nested.AccountStatus
 import com.vguivarc.musicme.backend.domain.providers.account.IAccountProvider
 import com.vguivarc.musicme.backend.domain.providers.email.IEmailProvider
 import com.vguivarc.musicme.backend.testhelpers.MongoInitializer
-import com.vguivarc.musicme.backend.web.api.v1.user.auth.entities.JwtAuthResponseVM
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
@@ -23,7 +22,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.http.MediaType
 import org.springframework.restdocs.RestDocumentationContextProvider
 import org.springframework.restdocs.RestDocumentationExtension
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers
@@ -32,9 +30,6 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
@@ -114,12 +109,12 @@ abstract class SwagTestInterface {
                 status = AccountStatus.ACTIVE
             )
         ).toAccount()
-        accountUserId = account.id
+        accountUserId = account.idAccount
         return account
     }
 
     fun getTestAccountUser(): Account {
-        return accountProvider.findOneById(accountUserId).toAccount()
+        return accountProvider.findOneByIdAccount(accountUserId).toAccount()
     }
 
     fun addTestAccountProfessional(): Account {
@@ -132,7 +127,7 @@ abstract class SwagTestInterface {
                 status = AccountStatus.ACTIVE
             )
         ).toAccount()
-        accountProfessionalId = account.id
+        accountProfessionalId = account.idAccount
         return account
     }
 
@@ -142,7 +137,7 @@ abstract class SwagTestInterface {
                 DBVerificationCode(
                     code = "1234",
                     expirationDate = ZonedDateTime.now().plusDays(1),
-                    accountId = getTestAccountUser().id,
+                    accountId = getTestAccountUser().idAccount,
                     isUsed = false
                 )
             ).toVerificationCode()

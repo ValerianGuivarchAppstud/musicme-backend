@@ -7,23 +7,35 @@ import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
 import java.time.ZonedDateTime
 
-@ApiModel(value = "JWT access token", description = "the jwt access token")
+@ApiModel(value = "", description = "")
 data class ContactVM(
-    @JsonProperty("title")
-    @ApiModelProperty(value = "the nickname of the song")
-    val nickname: String? = null,
+    @JsonProperty("idProfile")
+    @ApiModelProperty(value = "the profile id of the contact")
+    val idProfile: String? = null,
+    @JsonProperty("username")
+    @ApiModelProperty(value = "the name of the contact")
+    val username: String? = null,
     @JsonProperty("pictureUrl")
-    @ApiModelProperty(value = "the pictureUrl of the contact")
+    @ApiModelProperty(value = "the picture of the contact")
     val pictureUrl: String? = null,
     @JsonProperty("createdAt")
     @ApiModelProperty(value = "the date the contact has been added")
-    val createdAt: ZonedDateTime? = null
+    val createdAt: ZonedDateTime? = null,
+    @JsonProperty("nbRingingSent")
+    @ApiModelProperty(value = "the nb of sent ringing")
+    val nbRingingSent: Int? = 0,
+    @JsonProperty("nbRingingReceived")
+    @ApiModelProperty(value = "the nb of received ringing")
+    val nbRingingReceived: Int? = 0
 ) {
     companion object {
-        fun fromContact(contact: Contact, profile: Profile) = ContactVM(
-            nickname = profile.username,
+        fun fromContact(contact: Contact, profile: Profile, nbRingingSent: Int, nbRingingReceived: Int) = ContactVM(
+            idProfile = profile.idProfile,
+            username = profile.username,
             pictureUrl = profile.pictureUrl,
-            createdAt = contact.createdDate
+            createdAt = contact.createdDate,
+            nbRingingSent = nbRingingSent,
+            nbRingingReceived = nbRingingReceived
         )
     }
 }
