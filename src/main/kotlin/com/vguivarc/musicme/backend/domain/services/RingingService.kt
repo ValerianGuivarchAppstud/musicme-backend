@@ -1,7 +1,6 @@
 package com.vguivarc.musicme.backend.domain.services
 
 import com.vguivarc.musicme.backend.domain.models.contact.Contact
-import com.vguivarc.musicme.backend.domain.models.profile.Profile
 import com.vguivarc.musicme.backend.domain.models.ringing.Ringing
 import com.vguivarc.musicme.backend.domain.models.song.Song
 import com.vguivarc.musicme.backend.domain.providers.ringing.IRingingProvider

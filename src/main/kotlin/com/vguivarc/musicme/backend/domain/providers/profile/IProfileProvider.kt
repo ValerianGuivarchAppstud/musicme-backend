@@ -10,5 +10,6 @@ interface IProfileProvider {
     fun findOneByIdAccount(idAccount: String): IProfileResponse
     fun findOneByIdProfile(idProfile: String): IProfileResponse
     fun findListByIdAccount(idList: List<String>): List<IProfileResponse>
+    fun findOneByUsername(searchUsernameText: String): IProfileResponse?
     fun findByIdAccount(id: String): IProfileResponse?
 }

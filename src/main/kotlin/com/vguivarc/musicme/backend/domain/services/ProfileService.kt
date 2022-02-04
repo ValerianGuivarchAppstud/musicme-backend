@@ -5,6 +5,7 @@ import com.vguivarc.musicme.backend.domain.models.profile.Profile
 import com.vguivarc.musicme.backend.domain.providers.profile.IProfileProvider
 import com.vguivarc.musicme.backend.libraries.entities.EntityUtils
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.social.connect.UserProfile
 import org.springframework.stereotype.Service
 
 @Service
@@ -33,5 +34,9 @@ class ProfileService {
 
     fun findListByIdAccount(accountList: List<Account>): List<Profile> {
         return profileProvider.findListByIdAccount(accountList.map { it.idAccount }).map { it.toProfile() }
+    }
+
+    fun findListByUsername(searchUsernameText: String): Profile? {
+        return profileProvider.findOneByUsername(searchUsernameText)?.toProfile()
     }
 }

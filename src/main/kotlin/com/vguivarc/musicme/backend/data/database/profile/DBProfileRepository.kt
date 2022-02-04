@@ -5,4 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository
 interface DBProfileRepository : MongoRepository<DBProfile, String> {
     fun findOneById(id: String): DBProfile?
     fun findOneByIdAccount(id: String): DBProfile?
+    fun findOneByUsername(username: String): DBProfile?
 }

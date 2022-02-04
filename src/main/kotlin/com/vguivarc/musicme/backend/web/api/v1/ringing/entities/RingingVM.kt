@@ -1,14 +1,12 @@
 package com.vguivarc.musicme.backend.web.api.v1.ringing.entities
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.vguivarc.musicme.backend.domain.models.favorite.Favorite
 import com.vguivarc.musicme.backend.domain.models.profile.Profile
 import com.vguivarc.musicme.backend.domain.models.ringing.Ringing
 import com.vguivarc.musicme.backend.domain.models.ringing.RingingState
 import com.vguivarc.musicme.backend.domain.models.song.Song
 import io.swagger.annotations.ApiModel
 import io.swagger.annotations.ApiModelProperty
-import org.springframework.social.connect.UserProfile
 import java.time.ZonedDateTime
 
 @ApiModel(value = "JWT access token", description = "the jwt access token")

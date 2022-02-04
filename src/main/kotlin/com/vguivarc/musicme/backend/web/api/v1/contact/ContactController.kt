@@ -3,6 +3,7 @@ package com.vguivarc.musicme.backend.web.api.v1.contact
 import com.vguivarc.musicme.backend.domain.services.*
 import com.vguivarc.musicme.backend.web.api.v1.contact.entities.ContactFacebookVM
 import com.vguivarc.musicme.backend.web.api.v1.contact.entities.ContactVM
+import com.vguivarc.musicme.backend.web.api.v1.contact.entities.SearchResultContactVM
 import com.vguivarc.musicme.backend.web.api.v1.contact.request.UpdateContactStatusRequest
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
@@ -76,6 +77,30 @@ class ContactController {
             pr
         ) }
         return res
+    }
+
+
+
+    @GetMapping("/username")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "search user by username")
+    fun searchByUsername(
+        @RequestParam("searchUsernameText")
+        searchUsernameText: String
+    ): SearchResultContactVM? {
+
+        val account = authenticationService.findConnectedAccountOrThrowAccessDenied()
+
+        val profile = profileService.findProfileWithIdAccount(account.idAccount)
+
+        val contactList = contactService.getContacts(profile)
+
+        val userProfile = profileService.findListByUsername(searchUsernameText)
+
+        val contact = userProfile?.let{contactList.find { it.idProfileOfContact == userProfile.idProfile } != null}
+
+        return SearchResultContactVM.fromProfile(userProfile,contact)
+
     }
 
     @PutMapping("/status")

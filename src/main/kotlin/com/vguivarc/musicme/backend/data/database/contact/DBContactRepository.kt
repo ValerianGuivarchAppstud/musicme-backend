@@ -8,6 +8,6 @@ import org.springframework.data.mongodb.repository.MongoRepository
 interface DBContactRepository : MongoRepository<DBContact, String> {
 
     fun findAllByIdProfile(idProfile: String): List<IContactResponse>
-    fun findOneByIdProfile(idProfile: String, idProfileOfContact: String): DBContact?
+    fun findOneByIdProfileAndIdProfileOfContact(profileId: String, idProfileOfContact: String): DBContact?
 
 }

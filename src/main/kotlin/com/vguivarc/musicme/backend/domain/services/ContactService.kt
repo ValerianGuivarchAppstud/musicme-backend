@@ -17,8 +17,8 @@ class ContactService {
     @Autowired
     lateinit var contactFacebookProvider: IContactFacebookProvider
 
-    fun saveContactStatus(profileId: String, profileContactId: String, isContact: Boolean) {
-        this.contactProvider.saveFavoriteStatus(profileId, profileContactId, isContact)
+    fun saveContactStatus(profileId: String, profileContactId: String, isContact: Boolean){
+        return this.contactProvider.saveFavoriteStatus(profileId, profileContactId, isContact)
     }
 
     fun getContacts(profile: Profile): List<Contact> {

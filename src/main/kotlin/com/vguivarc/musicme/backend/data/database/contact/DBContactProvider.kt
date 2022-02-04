@@ -19,9 +19,9 @@ class DBContactProvider : IContactProvider {
         return list
     }
 
-    override fun saveFavoriteStatus(profileId: String, profileContactId: String, isContact: Boolean) {
+    override fun saveFavoriteStatus(profileId: String, profileContactId: String, isContact: Boolean){
         if(isContact) {
-            repository.findOneByIdProfile(profileId, profileContactId)
+            repository.findOneByIdProfileAndIdProfileOfContact(profileId, profileContactId)
                 ?.let {
                     throw DomainException(ProviderExceptions.DB_CONTACT_ALREADY_EXISTS)
                 } ?:let{
@@ -33,7 +33,7 @@ class DBContactProvider : IContactProvider {
                 )
             }
         } else {
-            repository.findOneByIdProfile(profileId, profileContactId)
+            repository.findOneByIdProfileAndIdProfileOfContact(profileId, profileContactId)
                 ?.let {
                     repository.delete(it)
                 } ?:let{

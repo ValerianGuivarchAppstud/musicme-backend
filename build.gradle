@@ -20,7 +20,7 @@ buildscript {
     }
     repositories {
         mavenLocal()
-        maven { url 'http://maven.springframework.org/snapshot' }
+        maven { url 'https://maven.springframework.org/snapshot' }
         mavenCentral()
     }
     dependencies {
@@ -65,7 +65,7 @@ compileTestKotlin {
 
 repositories {
     mavenLocal()
-    maven { url 'http://maven.springframework.org/milestone' }
+    maven { url 'https://maven.springframework.org/milestone' }
     mavenCentral()
     jcenter()
     maven { url "https://jitpack.io" }

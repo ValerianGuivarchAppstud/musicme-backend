@@ -60,6 +60,10 @@ class DBProfileProvider : IProfileProvider {
         return idList.mapNotNull { repository.findOneByIdAccount(it) }
     }
 
+    override fun findOneByUsername(searchUsernameText: String): IProfileResponse? {
+        return repository.findOneByUsername(searchUsernameText)
+    }
+
     override fun findByIdAccount(id: String): IProfileResponse? {
         return repository.findOneByIdAccount(id)
     }
